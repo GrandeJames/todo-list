@@ -11,7 +11,7 @@ export function addSidebar(parentElement) {
 
   aside.id = "menu-container";
 
-  div1.id = "input-container";
+  div1.id = "inbox-container";
   div2.id = "today-container";
   div3.id = "projects-container";
 
@@ -37,6 +37,3 @@ export function addSidebar(parentElement) {
 // TODO: add active to active menu item
 // TODO: add icons to menu items
 // TODO: add projects
-// TODO: make it clickable and changes content
-
-// Have own array for

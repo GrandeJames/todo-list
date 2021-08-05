@@ -33,15 +33,15 @@ main {
   background-color: var(--color-gray);
 }
 
-#content-section {
+#tasks-container {
+  margin-top: 1rem;
+}
+
+.content-section {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 2rem 5rem;
-}
-
-#tasks-container {
-  margin-top: 1rem;
 }
 
 .menu-item {

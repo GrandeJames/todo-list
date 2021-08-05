@@ -5,7 +5,6 @@ export function addMenuBtnListener() {
 }
 
 function toggleSidebar() {
-  console.log("test");
   const menuContainer = document.querySelector("#menu-container");
 
   if (!menuContainer.classList.contains("hidden")) {

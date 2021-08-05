@@ -1,5 +1,6 @@
 import { addHeader } from "../layouts/header.js";
-import { addSidebar } from "../sidebar.js";
+import { addSidebar } from "../components/sidebar.js";
+import { loadInbox } from "../contents/inbox.js";
 
 export function loadPage() {
   const body = document.querySelector("body");
@@ -9,4 +10,6 @@ export function loadPage() {
 
   body.appendChild(main);
   addSidebar(main);
+
+  loadInbox(main);
 }

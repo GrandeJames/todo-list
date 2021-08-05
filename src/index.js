@@ -7,5 +7,9 @@ init();
 function init() {
   loadPage();
 
+  const main = document.querySelector("main");
+
   listeners.addMenuBtnListener();
+  listeners.addInboxBtnListener(main);
+  listeners.addTodayBtnListener(main);
 }
