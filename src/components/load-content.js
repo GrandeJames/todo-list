@@ -1,13 +1,8 @@
-import { setActive } from "./active";
+import { setActive } from "./active.js";
+import { removeCurrentContent } from "./content.js";
 
 export function loadContent(addContent, element) {
   removeCurrentContent();
   addContent();
   setActive(element);
-}
-
-function removeCurrentContent() {
-  if (document.querySelector(".content-section") !== null) {
-    document.querySelector(".content-section").remove();
-  }
 }

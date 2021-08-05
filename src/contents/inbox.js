@@ -1,5 +1,5 @@
+import { addContentSection } from "../components/content.js";
 import { loadContent } from "../components/load-content.js";
-import { addContentSection } from "../components/content-section.js";
 
 export function loadInbox(parentElement) {
   loadContent(

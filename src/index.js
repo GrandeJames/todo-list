@@ -1,6 +1,6 @@
 import "./styles.css";
 import { loadPage } from "./dashboard/dashboard.js";
-import * as listeners from "./listeners/index.js";
+import * as listeners from "./events.js";
 
 init();
 
