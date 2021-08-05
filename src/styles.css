@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --color-gray: rgba(0, 0, 0, 0.03);
+  --color-green: #4e9b47;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+  background-color: var(--color-green);
+}
+
+main {
+  display: flex;
+  height: 100%;
+}
+
+#menu-container {
+  width: 10rem;
+  background-color: var(--color-gray);
+}
+
+.menu-item:hover {
+  background-color: white;
+}
