@@ -38,3 +38,5 @@ export function addSidebar(parentElement) {
 // TODO: add icons to menu items
 // TODO: add projects
 // TODO: make it clickable and changes content
+
+// Have own array for
