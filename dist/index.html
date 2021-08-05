@@ -1,1 +1,44 @@
-<head><script defer src="main.js"></script></head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <header>
+      <button id="menu-button">
+        <img src="images/icons8-menu.svg" alt="" />
+      </button>
+    </header>
+    <main>
+      <aside id="menu-container">
+        <!--TODO: add icons-->
+        <div id="inbox-container" class="menu-item">
+          <p>Inbox</p>
+        </div>
+        <!--TODO: remove active-->
+        <div id="today-container" class="menu-item active">
+          <p>Today</p>
+        </div>
+        <div id="projects-container" class="menu-item">
+          <p>Projects</p>
+        </div>
+      </aside>
+      <section id="content-section">
+        <h1>Inbox</h1>
+        <div id="tasks-container">
+          <li>
+            <div class="task">Test</div>
+          </li>
+          <li>
+            <div class="task">Other task</div>
+          </li>
+          <li>
+            <div class="task">third task</div>
+          </li>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

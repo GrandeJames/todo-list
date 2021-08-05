@@ -1,3 +1,5 @@
+/* Layout */
+
 * {
   margin: 0;
   padding: 0;
@@ -14,8 +16,9 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
-  height: 5vh;
+  align-items: center;
+  height: 7vh;
+  padding-left: 2rem;
   background-color: var(--color-green);
 }
 
@@ -25,10 +28,57 @@ main {
 }
 
 #menu-container {
-  width: 10rem;
+  padding: 2rem 0.5rem 0 2rem;
+  width: 15rem;
   background-color: var(--color-gray);
 }
 
-.menu-item:hover {
-  background-color: white;
+#content-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2rem 5rem;
+}
+
+#tasks-container {
+  margin-top: 1rem;
+}
+
+.menu-item {
+  padding: 7px;
+  margin: 5px;
+  border-radius: 7px;
+}
+
+.task {
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+}
+
+/* Aesthetics */
+
+li {
+  list-style-type: none;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background-color: var(--color-gray);
+}
+
+#menu-button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: none;
+}
+
+#menu-button:hover {
+  border-radius: 7px;
+  background-color: rgba(0, 0, 0, 0.11);
+}
+
+#menu-icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }
