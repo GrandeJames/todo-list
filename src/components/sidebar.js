@@ -33,7 +33,3 @@ export function addSidebar(parentElement) {
 
   parentElement.appendChild(aside);
 }
-
-// TODO: add active to active menu item
-// TODO: add icons to menu items
-// TODO: add projects
