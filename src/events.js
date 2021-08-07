@@ -1,6 +1,6 @@
 import { loadInbox } from "./contents/inbox.js";
 import { loadToday } from "./contents/today.js";
-import { loadTaskCreation } from "./task-creation.js";
+import { loadTaskCreation, removeTaskCreation } from "./task-creation.js";
 import { toggleSidebar } from "./components/sidebar.js";
 
 export function addMenuBtnListener() {
@@ -16,7 +16,17 @@ export function addTodayBtnListener(parentElement) {
 }
 
 export function addNewTaskBtnListener(parentElement) {
-  addClickListener("#new-task-button", () => loadTaskCreation(parentElement));
+  addClickListener("#new-task-button", () => {
+    console.log("clicked");
+    loadTaskCreation(parentElement);
+    addCancelTaskCreationListener();
+  });
+}
+
+function addCancelTaskCreationListener() {
+  console.log("loaded");
+  addClickListener("#cancel-task-creation-button", removeTaskCreation);
+  console.log("loaded2");
 }
 
 function addClickListener(selector, callback) {

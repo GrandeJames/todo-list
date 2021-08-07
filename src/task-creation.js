@@ -1,4 +1,4 @@
-import { hideElement } from "./components/hide.js";
+import { toggleElement } from "./components/hide.js";
 
 export function loadTaskCreation(parentElement) {
   addCreateTask(parentElement);
@@ -46,8 +46,20 @@ function addCreateTask(parentElement) {
   parentElement.insertBefore(div, parentElement.lastChild);
 }
 
+export function removeTaskCreation() {
+  console.log("remove");
+  const createTaskContainer = document.querySelector(".create-task-container");
+  const taskButtonsContainer = document.querySelector(
+    "#task-buttons-container"
+  );
+
+  createTaskContainer.remove();
+  taskButtonsContainer.remove();
+  toggleElement("#new-task-button");
+}
+
 function toggleCreateTaskBtn() {
-  hideElement("#new-task-button");
+  toggleElement("#new-task-button");
 }
 
 function addTaskCreationButtons(parentElement) {
