@@ -1,6 +1,6 @@
 import { loadInbox } from "./contents/inbox.js";
 import { loadToday } from "./contents/today.js";
-import { addCreateTask } from "./create-task.js";
+import { loadTaskCreation } from "./task-creation.js";
 import { toggleSidebar } from "./components/sidebar.js";
 
 export function addMenuBtnListener() {
@@ -16,7 +16,7 @@ export function addTodayBtnListener(parentElement) {
 }
 
 export function addNewTaskBtnListener(parentElement) {
-  addClickListener("#new-task-button", () => addCreateTask(parentElement));
+  addClickListener("#new-task-button", () => loadTaskCreation(parentElement));
 }
 
 function addClickListener(selector, callback) {

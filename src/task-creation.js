@@ -1,4 +1,12 @@
-export function addCreateTask(parentNode) {
+import { hideElement } from "./components/hide.js";
+
+export function loadTaskCreation(parentElement) {
+  addCreateTask(parentElement);
+  toggleCreateTaskBtn();
+  addTaskCreationButtons(parentElement);
+}
+
+function addCreateTask(parentElement) {
   const div = document.createElement("div");
 
   const form = document.createElement("form");
@@ -35,15 +43,37 @@ export function addCreateTask(parentNode) {
 
   div.appendChild(form);
 
-  parentNode.insertBefore(div, parentNode.lastChild);
+  parentElement.insertBefore(div, parentElement.lastChild);
 }
 
-//move later
+function toggleCreateTaskBtn() {
+  hideElement("#new-task-button");
+}
+
+function addTaskCreationButtons(parentElement) {
+  const div = document.createElement("div");
+  div.id = "task-buttons-container";
+
+  addSubmitTaskButton(div);
+  addCancelButton(div);
+
+  parentElement.appendChild(div);
+}
+
 function addSubmitTaskButton(parentElement) {
   const button = document.createElement("button");
 
-  button.id = "submit-task-button";
+  button.id = "submit-task-creation-button";
   button.textContent = "Add new task";
+
+  parentElement.appendChild(button);
+}
+
+function addCancelButton(parentElement) {
+  const button = document.createElement("button");
+
+  button.id = "cancel-task-creation-button";
+  button.textContent = "Cancel";
 
   parentElement.appendChild(button);
 }
