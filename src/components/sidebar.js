@@ -1,3 +1,5 @@
+import { hideElement } from "./hide.js";
+
 export function addSidebar(parentElement) {
   const aside = document.createElement("aside");
 
@@ -32,4 +34,8 @@ export function addSidebar(parentElement) {
   aside.appendChild(div3);
 
   parentElement.appendChild(aside);
+}
+
+export function toggleSidebar() {
+  hideElement("#menu-container");
 }

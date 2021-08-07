@@ -1,30 +1,24 @@
 import { loadInbox } from "./contents/inbox.js";
 import { loadToday } from "./contents/today.js";
+import { addCreateTask } from "./create-task.js";
+import { toggleSidebar } from "./components/sidebar.js";
+
+export function addMenuBtnListener() {
+  addClickListener("#menu-button", toggleSidebar);
+}
 
 export function addInboxBtnListener(parentElement) {
-  const inboxContainer = document.querySelector("#inbox-container");
-
-  inboxContainer.addEventListener("click", () => loadInbox(parentElement));
+  addClickListener("#inbox-container", () => loadInbox(parentElement));
 }
 
 export function addTodayBtnListener(parentElement) {
-  const todayContainer = document.querySelector("#today-container");
-
-  todayContainer.addEventListener("click", () => loadToday(parentElement));
+  addClickListener("#today-container", () => loadToday(parentElement));
 }
 
-export function addMenuBtnListener() {
-  const menuButton = document.querySelector("#menu-button");
-
-  menuButton.addEventListener("click", toggleSidebar);
+export function addNewTaskBtnListener(parentElement) {
+  addClickListener("#new-task-button", () => addCreateTask(parentElement));
 }
 
-function toggleSidebar() {
-  const menuContainer = document.querySelector("#menu-container");
-
-  if (!menuContainer.classList.contains("hidden")) {
-    menuContainer.classList.add("hidden");
-  } else {
-    menuContainer.classList.remove("hidden");
-  }
+function addClickListener(selector, callback) {
+  document.querySelector(selector).addEventListener("click", callback);
 }

@@ -4,6 +4,7 @@ export function addContentSection(parentElement, heading) {
   section.className = "content-section";
 
   addContentHeading(section, heading);
+  addNewTaskButton(section);
 
   parentElement.appendChild(section);
 }
@@ -11,9 +12,19 @@ export function addContentSection(parentElement, heading) {
 function addContentHeading(parentElement, heading) {
   const h1 = document.createElement("h1");
 
+  h1.classList = "content-heading";
   h1.textContent = heading;
 
   parentElement.appendChild(h1);
+}
+
+function addNewTaskButton(parentElement) {
+  const button = document.createElement("button");
+
+  button.id = "new-task-button";
+  button.textContent = "Add new task";
+
+  parentElement.appendChild(button);
 }
 
 export function removeCurrentContent() {

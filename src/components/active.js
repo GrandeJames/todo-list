@@ -3,7 +3,7 @@ export function setActive(element) {
   addActive(element);
 }
 
-function removeActive() {
+function removeActive(selector) {
   const menuItems = document.querySelectorAll(".menu-item");
 
   menuItems.forEach(menuItem => {
