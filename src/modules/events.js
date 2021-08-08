@@ -1,7 +1,7 @@
-import { loadInboxContent } from "./contents/inbox.js";
-import { loadTodayContent } from "./contents/today.js";
-import { loadTaskCreation, removeTaskCreation } from "./task-creation.js";
-import { toggleSidebar } from "./sidebar.js";
+import { loadInboxContent } from "./contents/inbox";
+import { loadTodayContent } from "./contents/today";
+import { loadTaskCreation, removeTaskCreation } from "./task-creation";
+import { toggleSidebar } from "./sidebar";
 
 // Delete later
 import { addTask, Task } from "./task.js";

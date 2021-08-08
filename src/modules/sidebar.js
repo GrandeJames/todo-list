@@ -1,4 +1,4 @@
-import { toggleElement } from "../components/hide.js";
+import { toggleElement } from "../components/hide";
 
 export function addSidebar() {
   const aside = document.createElement("aside");

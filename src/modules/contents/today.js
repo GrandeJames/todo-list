@@ -1,4 +1,4 @@
-import { addContentSection, loadContent } from "../content.js";
+import { addContentSection, loadContent } from "../content";
 
 export function loadTodayContent() {
   loadContent(addTodayContent, document.querySelector("#today-container"));

@@ -1,6 +1,6 @@
-import { addHeader } from "../layouts/header.js";
-import { addSidebar } from "../modules/sidebar.js";
-import { loadInboxContent } from "../modules/contents/inbox.js";
+import { addHeader } from "../layouts/header";
+import { addSidebar } from "../modules/sidebar";
+import { loadInboxContent } from "../modules/contents/inbox";
 
 export function loadInitialPage() {
   const body = document.querySelector("body");

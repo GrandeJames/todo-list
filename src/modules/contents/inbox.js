@@ -1,4 +1,4 @@
-import { addContentSection, loadContent } from "../content.js";
+import { addContentSection, loadContent } from "../content";
 
 export function loadInboxContent() {
   loadContent(addInboxContent, document.querySelector("#inbox-container"));
