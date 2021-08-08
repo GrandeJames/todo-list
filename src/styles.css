@@ -6,7 +6,7 @@
   box-sizing: border-box;
   --color-gray: rgba(0, 0, 0, 0.03);
   --color-dark-gray: rgba(0, 0, 0, 0.3);
-  --color-green: #4e9b47;
+  --color-green: rgb(78, 155, 71);
   --radius: 5px;
 }
 
@@ -114,6 +114,12 @@ li {
   width: 7rem;
   margin-right: 5px;
   color: rgba(0, 0, 0, 0.75);
+}
+
+#submit-task-creation-button:disabled {
+  background-color: rgb(78, 155, 71, 0.3);
+  color: var(--color-dark-gray);
+  cursor: not-allowed;
 }
 
 #cancel-task-creation-button {

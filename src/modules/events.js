@@ -21,10 +21,39 @@ export function addTodayBtnListener(parentElement) {
 export function addNewTaskBtnListener(parentElement) {
   addClickListener("#new-task-button", () => {
     loadTaskCreation(parentElement);
-    addCancelTaskCreationListener();
 
-    let constObj = new Task("this is title", "the desc");
+    addSubmitTaskBtnListener();
+    addCancelTaskCreationListener();
+  });
+}
+
+function addSubmitTaskBtnListener() {
+  addClickListener("#submit-task-creation-button", () => {
+    const titleInput = document.getElementById("title-input");
+    const descriptionInput = document.getElementById("description-input");
+
+    if (titleInput.value.trim() === "") {
+      return;
+    }
+
+    let constObj = new Task(titleInput.value, descriptionInput.value);
     addTaskItem(document.querySelector("#tasks-list"), constObj);
+
+    removeTaskCreation();
+  });
+
+  const titleInput = document.getElementById("title-input");
+
+  titleInput.addEventListener("input", () => {
+    const submitTaskCreationBtn = document.querySelector(
+      "#submit-task-creation-button"
+    );
+
+    if (titleInput.value.trim() === "") {
+      submitTaskCreationBtn.disabled = true;
+    } else {
+      submitTaskCreationBtn.disabled = false;
+    }
   });
 }
 

@@ -35,6 +35,8 @@ function addCreateTask(parentElement) {
   input1.placeholder = "New To-Do";
   input2.placeholder = "Description";
 
+  input1.required = true;
+
   div2.appendChild(input1);
   div2.appendChild(input2);
 
@@ -75,6 +77,7 @@ function addSubmitTaskButton(parentElement) {
   input.id = "submit-task-creation-button";
   input.type = "button";
   input.value = "Add task";
+  input.disabled = true;
 
   parentElement.appendChild(input);
 }
