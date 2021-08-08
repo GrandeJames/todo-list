@@ -10,9 +10,7 @@ function addCreateTask(parentElement) {
   const form = document.createElement("form");
   form.id = "task-creation-container";
 
-  const div = document.createElement("div");
-
-  //remove form2 and name it input task container
+  const div1 = document.createElement("div");
 
   const div2 = document.createElement("div");
   const div3 = document.createElement("div");
@@ -20,7 +18,7 @@ function addCreateTask(parentElement) {
   const input1 = document.createElement("input");
   const input2 = document.createElement("input");
 
-  div.classList = "input-task-container";
+  div1.classList = "input-task-container";
 
   div2.classList = "top-input-container";
   div3.classList = "bottom-input-container";
@@ -40,12 +38,12 @@ function addCreateTask(parentElement) {
   div2.appendChild(input1);
   div2.appendChild(input2);
 
-  div.appendChild(div2);
-  div.appendChild(div3);
+  div1.appendChild(div2);
+  div1.appendChild(div3);
 
-  form.appendChild(div);
+  form.appendChild(div1);
 
-  parentElement.insertBefore(form, parentElement.lastChild);
+  parentElement.appendChild(form);
 }
 
 export function removeTaskCreation() {
