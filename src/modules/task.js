@@ -3,7 +3,6 @@
 // NEED 1 ARRAY OF TASKS FOR INBOX_TASKS
 // NEED 1 ARRAY OF TASKS DUE TODAY_TASKS
 // Project (has name and array of tasks)
-// Task (has title, description, due date, priority)
 export class Task {
   title;
   description;
@@ -51,7 +50,7 @@ export class Task {
 */
 
 // This will add task if it was inputted correctly
-export function addTask(parentElement, task) {
+export function addTaskItem(parentElement, task) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");

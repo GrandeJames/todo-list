@@ -5,4 +5,6 @@ export class Project {
   constructor(title) {
     this.title = title;
   }
+
+  // TODO: add a way to REMOVE and ADD tasks inside the array
 }

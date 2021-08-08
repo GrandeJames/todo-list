@@ -3,13 +3,16 @@ import { toggleElement } from "../components/hide";
 export function loadTaskCreation(parentElement) {
   addCreateTask(parentElement);
   toggleCreateTaskBtn();
-  addTaskCreationButtons(parentElement);
+  addTaskCreationButtons(document.querySelector("#task-creation-container"));
 }
 
 function addCreateTask(parentElement) {
+  const form = document.createElement("form");
+  form.id = "task-creation-container";
+
   const div = document.createElement("div");
 
-  const form = document.createElement("form");
+  //remove form2 and name it input task container
 
   const div2 = document.createElement("div");
   const div3 = document.createElement("div");
@@ -17,8 +20,7 @@ function addCreateTask(parentElement) {
   const input1 = document.createElement("input");
   const input2 = document.createElement("input");
 
-  div.classList = "create-task-container";
-  form.classList = "create-task-form";
+  div.classList = "input-task-container";
 
   div2.classList = "top-input-container";
   div3.classList = "bottom-input-container";
@@ -38,22 +40,20 @@ function addCreateTask(parentElement) {
   div2.appendChild(input1);
   div2.appendChild(input2);
 
-  form.appendChild(div2);
-  form.appendChild(div3);
+  div.appendChild(div2);
+  div.appendChild(div3);
 
-  div.appendChild(form);
+  form.appendChild(div);
 
-  parentElement.insertBefore(div, parentElement.lastChild);
+  parentElement.insertBefore(form, parentElement.lastChild);
 }
 
 export function removeTaskCreation() {
-  const createTaskContainer = document.querySelector(".create-task-container");
-  const taskButtonsContainer = document.querySelector(
-    "#task-buttons-container"
+  const taskCreationContainer = document.querySelector(
+    "#task-creation-container"
   );
 
-  createTaskContainer.remove();
-  taskButtonsContainer.remove();
+  taskCreationContainer.remove();
   toggleCreateTaskBtn();
 }
 
@@ -72,19 +72,21 @@ function addTaskCreationButtons(parentElement) {
 }
 
 function addSubmitTaskButton(parentElement) {
-  const button = document.createElement("button");
+  const input = document.createElement("input");
 
-  button.id = "submit-task-creation-button";
-  button.textContent = "Add new task";
+  input.id = "submit-task-creation-button";
+  input.type = "button";
+  input.value = "Add task";
 
-  parentElement.appendChild(button);
+  parentElement.appendChild(input);
 }
 
 function addCancelButton(parentElement) {
-  const button = document.createElement("button");
+  const input = document.createElement("input");
 
-  button.id = "cancel-task-creation-button";
-  button.textContent = "Cancel";
+  input.id = "cancel-task-creation-button";
+  input.type = "button";
+  input.value = "Cancel";
 
-  parentElement.appendChild(button);
+  parentElement.appendChild(input);
 }

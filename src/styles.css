@@ -64,7 +64,7 @@ li {
   list-style-type: none;
 }
 
-.create-task-container {
+.input-task-container {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-dark-gray);
