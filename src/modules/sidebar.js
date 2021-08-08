@@ -1,6 +1,6 @@
-import { toggleElement } from "./hide.js";
+import { toggleElement } from "../components/hide.js";
 
-export function addSidebar(parentElement) {
+export function addSidebar() {
   const aside = document.createElement("aside");
 
   const div1 = document.createElement("div");
@@ -11,6 +11,8 @@ export function addSidebar(parentElement) {
   const p2 = document.createElement("p");
   const p3 = document.createElement("p");
 
+  const hr = document.createElement("hr");
+
   aside.id = "menu-container";
 
   div1.id = "inbox-container";
@@ -19,11 +21,10 @@ export function addSidebar(parentElement) {
 
   div1.className = "menu-item";
   div2.className = "menu-item";
-  div3.className = "menu-item";
 
   p1.textContent = "Inbox";
   p2.textContent = "Today";
-  p3.textContent = "Projects";
+  p3.textContent = "Projects will go here";
 
   div1.appendChild(p1);
   div2.appendChild(p2);
@@ -31,9 +32,10 @@ export function addSidebar(parentElement) {
 
   aside.appendChild(div1);
   aside.appendChild(div2);
+  aside.appendChild(hr);
   aside.appendChild(div3);
 
-  parentElement.appendChild(aside);
+  document.querySelector("main").appendChild(aside);
 }
 
 export function toggleSidebar() {

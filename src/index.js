@@ -1,11 +1,11 @@
 import "./styles.css";
-import { loadPage } from "./dashboard/dashboard.js";
-import * as listeners from "./events.js";
+import { loadInitialPage } from "./components/initial-page-load.js";
+import * as listeners from "./modules/events.js";
 
 init();
 
 function init() {
-  loadPage();
+  loadInitialPage();
 
   const main = document.querySelector("main");
 

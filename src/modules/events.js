@@ -1,32 +1,36 @@
-import { loadInbox } from "./contents/inbox.js";
-import { loadToday } from "./contents/today.js";
+import { loadInboxContent } from "./contents/inbox.js";
+import { loadTodayContent } from "./contents/today.js";
 import { loadTaskCreation, removeTaskCreation } from "./task-creation.js";
-import { toggleSidebar } from "./components/sidebar.js";
+import { toggleSidebar } from "./sidebar.js";
+
+// Delete later
+import { addTask, Task } from "./task.js";
 
 export function addMenuBtnListener() {
   addClickListener("#menu-button", toggleSidebar);
 }
 
 export function addInboxBtnListener(parentElement) {
-  addClickListener("#inbox-container", () => loadInbox(parentElement));
+  addClickListener("#inbox-container", () => loadInboxContent(parentElement));
 }
 
 export function addTodayBtnListener(parentElement) {
-  addClickListener("#today-container", () => loadToday(parentElement));
+  addClickListener("#today-container", () => loadTodayContent(parentElement));
 }
 
 export function addNewTaskBtnListener(parentElement) {
   addClickListener("#new-task-button", () => {
-    console.log("clicked");
     loadTaskCreation(parentElement);
     addCancelTaskCreationListener();
+
+    let constObj = new Task("this is title", "the desc");
+    console.log(constObj.title);
+    addTask(document.querySelector("#tasks-container"), constObj);
   });
 }
 
 function addCancelTaskCreationListener() {
-  console.log("loaded");
   addClickListener("#cancel-task-creation-button", removeTaskCreation);
-  console.log("loaded2");
 }
 
 function addClickListener(selector, callback) {
