@@ -1,10 +1,22 @@
 export class Project {
-  title;
+  name;
   tasks = [];
 
   constructor(title) {
-    this.title = title;
+    this.name = title;
   }
 
-  // TODO: add a way to REMOVE and ADD tasks inside the array
+  get name() {
+    return this.name;
+  }
+
+  get tasks() {
+    return this.tasks;
+  }
+
+  addTask(task) {
+    this.tasks.push(task);
+  }
+
+  //TODO: add remove task
 }

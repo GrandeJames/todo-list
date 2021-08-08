@@ -3,6 +3,10 @@ import { loadTodayContent } from "./contents/today";
 import { loadTaskCreation, removeTaskCreation } from "./task-creation";
 import { toggleSidebar } from "./sidebar";
 
+import { inboxProject, todayProject } from "../components/initial-page-load";
+
+import { projects } from "./projects";
+
 // Delete later
 import { addTaskItem, Task } from "./task.js";
 
@@ -18,30 +22,39 @@ export function addTodayBtnListener(parentElement) {
   addClickListener("#today-container", () => loadTodayContent(parentElement));
 }
 
-export function addNewTaskBtnListener(parentElement) {
+export function addNewTaskBtnListener(parentElement, projectName) {
   addClickListener("#new-task-button", () => {
     loadTaskCreation(parentElement);
 
-    addSubmitTaskBtnListener();
+    addSubmitTaskBtnListener(projectName);
     addCancelTaskCreationListener();
   });
 }
 
-function addSubmitTaskBtnListener() {
+function addSubmitTaskBtnListener(projectName) {
   addClickListener("#submit-task-creation-button", () => {
     const titleInput = document.getElementById("title-input");
     const descriptionInput = document.getElementById("description-input");
 
-    if (titleInput.value.trim() === "") {
-      return;
-    }
+    let task = new Task(titleInput.value, descriptionInput.value);
 
-    let constObj = new Task(titleInput.value, descriptionInput.value);
-    addTaskItem(document.querySelector("#tasks-list"), constObj);
-
+    addTaskItem(task);
+    addTaskToProject(task, projectName);
     removeTaskCreation();
   });
 
+  addTitleInputListener();
+}
+
+function addTaskToProject(task, projectName) {
+  projects.forEach(project => {
+    if (project.name === projectName) {
+      project.addTask(task);
+    }
+  });
+}
+
+function addTitleInputListener() {
   const titleInput = document.getElementById("title-input");
 
   titleInput.addEventListener("input", () => {

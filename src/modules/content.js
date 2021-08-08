@@ -1,10 +1,10 @@
 import { activateMenuItem } from "./menu-item";
 import { addNewTaskBtnListener } from "./events";
 
-export function loadContent(addContent, menuItem) {
+export function loadContent(addContent, menuItem, projectName) {
   removeCurrentContent();
   addContent();
-  addContentSectionListeners();
+  addContentSectionListeners(projectName);
   activateMenuItem(menuItem);
 }
 
@@ -14,8 +14,11 @@ function removeCurrentContent() {
   }
 }
 
-function addContentSectionListeners() {
-  addNewTaskBtnListener(document.querySelector(".content-section"));
+function addContentSectionListeners(projectName) {
+  addNewTaskBtnListener(
+    document.querySelector(".content-section"),
+    projectName
+  );
 }
 
 export function addContentSection(heading) {

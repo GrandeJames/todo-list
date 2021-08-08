@@ -49,8 +49,7 @@ export class Task {
       </div>
 */
 
-// This will add task if it was inputted correctly
-export function addTaskItem(parentElement, task) {
+export function addTaskItem(task) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
@@ -73,5 +72,5 @@ export function addTaskItem(parentElement, task) {
 
   taskItem.appendChild(div1);
 
-  parentElement.appendChild(taskItem);
+  document.querySelector("#tasks-list").appendChild(taskItem);
 }
