@@ -6,6 +6,9 @@ export function loadTaskCreation(selector) {
   addTaskCreationButtons(document.querySelector("#task-creation-container"));
 }
 
+//remove?
+import { hideOnClickOutside } from "./events";
+
 export function addEditTask(element) {
   // TODO: add task as parameter
   // TODO: set the values of the inputs with the task object
@@ -21,6 +24,9 @@ export function addEditTask(element) {
   toggleCreateTaskBtn();
 
   addEditTaskButtons(document.querySelector("#task-creation-container"));
+
+  //remove?
+  hideOnClickOutside();
 }
 
 function addEditTaskButtons(parentElement) {

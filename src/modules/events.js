@@ -80,14 +80,10 @@ function addCancelTaskCreationListener() {
   addClickListener("#cancel-task-creation-button", removeTaskCreation);
 }
 
-// TODO: add the listener when the task-item is created
-export function addEditTaskListenerWRONG() {
-  addClickListener(".task-item", event => {
-    addEditTask("#tasks-list");
-
-    // TODO: Hide the particular clicked element
-    console.log(event.target.parentElement.parentElement.parentElement);
-    //hideTaskItem(event.target.parentElement.parentElement.parentElement);
+function addCancelEditTaskListener(element) {
+  addClickListener("#cancel-task-creation-button", () => {
+    removeTaskCreation();
+    toggleElement(element);
   });
 }
 
@@ -95,25 +91,27 @@ export function addEditTaskListener(element) {
   element.addEventListener("click", () => {
     addEditTask(element);
     toggleElement(element);
-    // TODO: make the task creation container underneath the element, not on top of the buttons
-    // TODO hide the buttons
+    addCancelEditTaskListener(element);
     // TODO: make task creation use the task object from the clicked
   });
 }
 
-/*
-document.addEventListener("click", event => {
-  if (event.target.closest("#task-creation-container") !== null) {
-    if (event.target.closest("#task-creation-container").length) {
-      console.log("inside");
+export function hideOnClickOutside() {
+  const outsideClickListener = event => {
+    if (event.target.closest("#task-creation-container") === null) {
+      //removeClickListener();
+      console.log("test1");
     } else {
+      console.log("test2");
     }
-  } else {
-    event.preventDefault();
-    console.log("outside");
-  }
-});
-*/
+  };
+
+  const removeClickListener = () => {
+    document.removeEventListener("click", outsideClickListener);
+  };
+
+  document.addEventListener("click", outsideClickListener);
+}
 
 function addClickListener(selector, callback) {
   document.querySelector(selector).addEventListener("click", callback);
