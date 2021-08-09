@@ -1,6 +1,4 @@
-export function toggleElement(selector) {
-  const element = document.querySelector(selector);
-
+export function toggleElement(element) {
   if (!element.classList.contains("hidden")) {
     element.classList.add("hidden");
   } else {

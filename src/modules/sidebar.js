@@ -39,5 +39,5 @@ export function addSidebar() {
 }
 
 export function toggleSidebar() {
-  toggleElement("#menu-container");
+  toggleElement(document.querySelector("#menu-container"));
 }

@@ -3,6 +3,7 @@
 // NEED 1 ARRAY OF TASKS FOR INBOX_TASKS
 // NEED 1 ARRAY OF TASKS DUE TODAY_TASKS
 // Project (has name and array of tasks)
+import { addEditTaskListener } from "./events";
 export class Task {
   title;
   description;
@@ -73,4 +74,7 @@ export function addTaskItem(task) {
   taskItem.appendChild(div1);
 
   document.querySelector("#tasks-list").appendChild(taskItem);
+
+  // TODO: move?
+  addEditTaskListener(taskItem);
 }

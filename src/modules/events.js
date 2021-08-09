@@ -1,6 +1,11 @@
 import { loadInboxContent } from "./contents/inbox";
 import { loadTodayContent } from "./contents/today";
-import { loadTaskCreation, removeTaskCreation } from "./task-creation";
+import {
+  loadTaskCreation,
+  removeTaskCreation,
+  addEditTask,
+  hideTaskItem,
+} from "./task-creation";
 import { toggleSidebar } from "./sidebar";
 
 import { inboxProject, todayProject } from "../components/initial-page-load";
@@ -9,6 +14,7 @@ import { projects } from "./projects";
 
 // Delete later
 import { addTaskItem, Task } from "./task.js";
+import { toggleElement } from "../components/hide";
 
 export function addMenuBtnListener() {
   addClickListener("#menu-button", toggleSidebar);
@@ -22,9 +28,9 @@ export function addTodayBtnListener(parentElement) {
   addClickListener("#today-container", () => loadTodayContent(parentElement));
 }
 
-export function addNewTaskBtnListener(parentElement, projectName) {
+export function addNewTaskBtnListener(selector, projectName) {
   addClickListener("#new-task-button", () => {
-    loadTaskCreation(parentElement);
+    loadTaskCreation(selector);
 
     addSubmitTaskBtnListener(projectName);
     addCancelTaskCreationListener();
@@ -72,6 +78,28 @@ function addTitleInputListener() {
 
 function addCancelTaskCreationListener() {
   addClickListener("#cancel-task-creation-button", removeTaskCreation);
+}
+
+// TODO: add the listener when the task-item is created
+export function addEditTaskListenerWRONG() {
+  addClickListener(".task-item", event => {
+    addEditTask("#tasks-list");
+
+    // TODO: Hide the particular clicked element
+    console.log(event.target.parentElement.parentElement.parentElement);
+    //hideTaskItem(event.target.parentElement.parentElement.parentElement);
+  });
+}
+
+export function addEditTaskListener(element) {
+  element.addEventListener("click", () => {
+    console.log("test");
+    addEditTask(element);
+    toggleElement(element);
+    // TODO: make the task creation container underneath the element, not on top of the buttons
+    // TODO hide the buttons
+    // TODO: make task creation use the task object from the clicked
+  });
 }
 
 function addClickListener(selector, callback) {

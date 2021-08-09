@@ -15,10 +15,7 @@ function removeCurrentContent() {
 }
 
 function addContentSectionListeners(projectName) {
-  addNewTaskBtnListener(
-    document.querySelector(".content-section"),
-    projectName
-  );
+  addNewTaskBtnListener(".content-section", projectName);
 }
 
 export function addContentSection(heading) {
