@@ -109,6 +109,13 @@ function getTaskCreation() {
   const input1 = document.createElement("input");
   const input2 = document.createElement("input");
 
+  const label2 = document.createElement("label");
+
+  const input3 = document.createElement("input");
+  const input4 = document.createElement("input");
+
+  const select = document.createElement("select");
+
   div1.classList = "input-task-container";
 
   div2.classList = "top-input-container";
@@ -119,14 +126,28 @@ function getTaskCreation() {
 
   input1.id = "title-input";
   input2.id = "description-input";
-
-  input1.name = "title";
-  input2.name = "description";
+  input3.id = "due-date";
+  input4.id = "remove-task-button";
 
   input1.placeholder = "Title";
   input2.placeholder = "Description";
 
   input1.required = true;
+
+  input3.type = "date";
+  input4.type = "button";
+
+  label2.setAttribute("for", "priority");
+  label2.textContent = "Priority: ";
+
+  input4.value = "Remove";
+
+  div3.appendChild(input3);
+
+  div3.appendChild(label2);
+  div3.appendChild(select);
+
+  div3.appendChild(input4);
 
   div2.appendChild(input1);
   div2.appendChild(input2);
