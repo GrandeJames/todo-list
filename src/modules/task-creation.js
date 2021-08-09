@@ -9,26 +9,28 @@ export function loadTaskCreation(selector) {
 export function addEditTask(element) {
   // TODO: add task as parameter
   // TODO: set the values of the inputs with the task object
+  // TODO: if clicked on anything else other than inside the
 
   // the task properties should be filled (title, description, ...)
   // add remove functionality, add save functionality that removes the hidden element and add the new saved one
 
   const taskCreation = getTaskCreation();
+
   element.parentElement.insertBefore(taskCreation, element.nextSibling);
-  taskCreation.parentElement.insertBefore(
-    getEditTaskButtons(),
-    taskCreation.nextSibling
-  );
+
+  toggleCreateTaskBtn();
+
+  addEditTaskButtons(document.querySelector("#task-creation-container"));
 }
 
-function getEditTaskButtons(parentElement) {
+function addEditTaskButtons(parentElement) {
   const div = document.createElement("div");
   div.id = "task-buttons-container";
 
   addSaveTaskButton(div);
   addCancelButton(div);
 
-  return div;
+  parentElement.appendChild(div);
 }
 
 function addSaveTaskButton(parentElement) {
