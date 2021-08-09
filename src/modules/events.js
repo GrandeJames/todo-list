@@ -37,14 +37,17 @@ export function addNewTaskBtnListener(selector, projectName) {
   });
 }
 
+import { addTask, getTaskAtIndex, getTaskId } from "./tasks";
+
 function addSubmitTaskBtnListener(projectName) {
   addClickListener("#submit-task-creation-button", () => {
     const titleInput = document.getElementById("title-input");
     const descriptionInput = document.getElementById("description-input");
 
     let task = new Task(titleInput.value, descriptionInput.value);
+    addTask(task);
 
-    addTaskItem(task);
+    addTaskItem(task, getTaskId(task));
     addTaskToProject(task, projectName);
     removeTaskCreation();
   });
@@ -89,10 +92,9 @@ function addCancelEditTaskListener(element) {
 
 export function addEditTaskListener(element) {
   element.addEventListener("click", () => {
-    addEditTask(element);
+    addEditTask(element, getTaskAtIndex(element.id));
     toggleElement(element);
     addCancelEditTaskListener(element);
-    // TODO: make task creation use the task object from the clicked
   });
 }
 

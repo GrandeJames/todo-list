@@ -9,7 +9,7 @@ export function loadTaskCreation(selector) {
 //remove?
 import { hideOnClickOutside } from "./events";
 
-export function addEditTask(element) {
+export function addEditTask(element, task) {
   // TODO: add task as parameter
   // TODO: set the values of the inputs with the task object
   // TODO: if clicked on anything else other than inside the
@@ -24,6 +24,12 @@ export function addEditTask(element) {
   toggleCreateTaskBtn();
 
   addEditTaskButtons(document.querySelector("#task-creation-container"));
+
+  document.querySelector("#title-input").value = "test edit title";
+  document.querySelector("#description-input").value = "test edit description";
+
+  document.querySelector("#title-input").value = task.title;
+  document.querySelector("#description-input").value = task.description;
 
   //remove?
   hideOnClickOutside();
@@ -45,7 +51,6 @@ function addSaveTaskButton(parentElement) {
   input.id = "save-task-creation-button";
   input.type = "button";
   input.value = "Save task";
-  //input.disabled = true;
 
   parentElement.appendChild(input);
 }
