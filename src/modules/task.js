@@ -21,7 +21,19 @@ export class Task {
   }
 }
 
-export function addTaskItem(task, index) {
+// Old function is addTaskItem
+export function addNewTaskItem(task, index) {
+  document.querySelector("#tasks-list").appendChild(getTaskItem(task, index));
+}
+
+export function addEditedTaskItem(task, index) {
+  element.parentElement.insertBefore(
+    getTaskItem(task, index),
+    element.nextSibling
+  );
+}
+
+function getTaskItem(task, index) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
@@ -46,8 +58,8 @@ export function addTaskItem(task, index) {
 
   taskItem.appendChild(div1);
 
-  document.querySelector("#tasks-list").appendChild(taskItem);
-
   // TODO: move?
   addEditTaskListener(taskItem);
+
+  return taskItem;
 }

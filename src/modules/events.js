@@ -13,7 +13,7 @@ import { inboxProject, todayProject } from "../components/initial-page-load";
 import { projects } from "./projects";
 
 // Delete later
-import { addTaskItem, Task } from "./task.js";
+import { addNewTaskItem, addEditedTaskItem, Task } from "./task.js";
 import { toggleElement } from "../components/hide";
 
 export function addMenuBtnListener() {
@@ -47,7 +47,7 @@ function addSubmitTaskBtnListener(projectName) {
     let task = new Task(titleInput.value, descriptionInput.value);
     addTask(task);
 
-    addTaskItem(task, getTaskId(task));
+    addNewTaskItem(task, getTaskId(task));
     addTaskToProject(task, projectName);
     removeTaskCreation();
   });
@@ -64,7 +64,7 @@ function addSaveTaskBtnListener(index) {
     task.title = titleInput.value;
     task.description = descriptionInput.value;
 
-    addTaskItem(task, index);
+    addEditedTaskItem(task, index);
 
     removeTaskCreation();
 
