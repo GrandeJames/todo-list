@@ -93,7 +93,6 @@ export function addEditTaskListenerWRONG() {
 
 export function addEditTaskListener(element) {
   element.addEventListener("click", () => {
-    console.log("test");
     addEditTask(element);
     toggleElement(element);
     // TODO: make the task creation container underneath the element, not on top of the buttons
@@ -101,6 +100,20 @@ export function addEditTaskListener(element) {
     // TODO: make task creation use the task object from the clicked
   });
 }
+
+/*
+document.addEventListener("click", event => {
+  if (event.target.closest("#task-creation-container") !== null) {
+    if (event.target.closest("#task-creation-container").length) {
+      console.log("inside");
+    } else {
+    }
+  } else {
+    event.preventDefault();
+    console.log("outside");
+  }
+});
+*/
 
 function addClickListener(selector, callback) {
   document.querySelector(selector).addEventListener("click", callback);

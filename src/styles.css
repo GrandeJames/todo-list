@@ -156,15 +156,23 @@ li {
   background-color: rgba(0, 0, 0, 0.11);
 }
 
-#new-task-button {
-  background: none;
-  height: 2rem;
-  border: none;
-  text-align: start;
-  padding: 5px;
+#new-task-button,
+#add-project-button {
   cursor: pointer;
   color: rgba(0, 0, 0, 0.5);
+  background: none;
+  border: none;
+  text-align: start;
+}
+
+#new-task-button {
+  height: 2rem;
+  padding: 5px;
   font-size: 15px;
+}
+
+#add-project-button {
+  width: 100%;
 }
 
 #menu-icon {
@@ -173,8 +181,4 @@ li {
 
 .hidden {
   display: none;
-}
-
-hr {
-  border: 0.1px solid var(--color-dark-gray);
 }
