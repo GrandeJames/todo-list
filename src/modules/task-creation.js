@@ -10,11 +10,8 @@ export function loadTaskCreation(selector) {
 import { hideOnClickOutside } from "./events";
 
 export function addEditTask(element, task) {
-  // TODO: add task as parameter
-  // TODO: set the values of the inputs with the task object
   // TODO: if clicked on anything else other than inside the
 
-  // the task properties should be filled (title, description, ...)
   // add remove functionality, add save functionality that removes the hidden element and add the new saved one
 
   const taskCreation = getTaskCreation();
@@ -24,9 +21,6 @@ export function addEditTask(element, task) {
   toggleCreateTaskBtn();
 
   addEditTaskButtons(document.querySelector("#task-creation-container"));
-
-  document.querySelector("#title-input").value = "test edit title";
-  document.querySelector("#description-input").value = "test edit description";
 
   document.querySelector("#title-input").value = task.title;
   document.querySelector("#description-input").value = task.description;
