@@ -52,7 +52,26 @@ function addSubmitTaskBtnListener(projectName) {
     removeTaskCreation();
   });
 
-  addTitleInputListener();
+  addTitleInputListener(document.querySelector("#submit-task-creation-button"));
+}
+
+function addSaveTaskBtnListener(index) {
+  addClickListener("#save-task-creation-button", () => {
+    const titleInput = document.getElementById("title-input");
+    const descriptionInput = document.getElementById("description-input");
+
+    let task = getTaskAtIndex(index);
+    task.title = titleInput.value;
+    task.description = descriptionInput.value;
+
+    addTaskItem(task, index);
+
+    removeTaskCreation();
+
+    document.getElementById(index).remove();
+  });
+
+  addTitleInputListener(document.querySelector("#save-task-creation-button"));
 }
 
 function addTaskToProject(task, projectName) {
@@ -63,18 +82,14 @@ function addTaskToProject(task, projectName) {
   });
 }
 
-function addTitleInputListener() {
+function addTitleInputListener(element) {
   const titleInput = document.getElementById("title-input");
 
   titleInput.addEventListener("input", () => {
-    const submitTaskCreationBtn = document.querySelector(
-      "#submit-task-creation-button"
-    );
-
     if (titleInput.value.trim() === "") {
-      submitTaskCreationBtn.disabled = true;
+      element.disabled = true;
     } else {
-      submitTaskCreationBtn.disabled = false;
+      element.disabled = false;
     }
   });
 }
@@ -95,6 +110,7 @@ export function addEditTaskListener(element) {
     addEditTask(element, getTaskAtIndex(element.id));
     toggleElement(element);
     addCancelEditTaskListener(element);
+    addSaveTaskBtnListener(element.id); // TODO make it remove the hidden element
   });
 }
 
