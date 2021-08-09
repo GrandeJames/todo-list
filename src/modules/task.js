@@ -26,7 +26,7 @@ export function addNewTaskItem(task, index) {
   document.querySelector("#tasks-list").appendChild(getTaskItem(task, index));
 }
 
-export function addEditedTaskItem(task, index) {
+export function addEditedTaskItem(task, index, element) {
   element.parentElement.insertBefore(
     getTaskItem(task, index),
     element.nextSibling

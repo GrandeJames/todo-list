@@ -64,7 +64,7 @@ function addSaveTaskBtnListener(index) {
     task.title = titleInput.value;
     task.description = descriptionInput.value;
 
-    addEditedTaskItem(task, index);
+    addEditedTaskItem(task, index, document.getElementById(index));
 
     removeTaskCreation();
 
