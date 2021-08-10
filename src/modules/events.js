@@ -13,7 +13,7 @@ import { inboxProject, todayProject } from "../components/initial-page-load";
 import { projects } from "./projects";
 
 // Delete later
-import { addNewTaskItem, addEditedTaskItem, Task } from "./task.js";
+import { addNewTaskItem, addEditedTaskItem, Task, loadTasks } from "./task.js";
 import { toggleElement } from "../components/hide";
 
 export function addMenuBtnListener() {
@@ -37,7 +37,13 @@ export function addNewTaskBtnListener(selector, projectName) {
   });
 }
 
-import { addTask, getTaskAtIndex, getTaskId } from "./tasks";
+import {
+  addTask,
+  getTaskAtIndex,
+  getTaskId,
+  getTasks,
+  removeTaskAtIndex,
+} from "./tasks";
 
 function addSubmitTaskBtnListener(projectName) {
   addClickListener("#submit-task-creation-button", () => {
@@ -72,6 +78,21 @@ function addSaveTaskBtnListener(index) {
   });
 
   addTitleInputListener(document.querySelector("#save-task-creation-button"));
+}
+
+// RN
+// TODO: WHEN I REMOVE SOMETHING, RELOAD THE CONTENT
+// BUG: REMOVE BUTTON IS INSIDE THE ADD TASK CREATION
+function addRemoveTaskBtnListener(index) {
+  addClickListener("#remove-task-button", () => {
+    // reload the page: remove the section then readd the section with the tasks
+    console.log("BEFORE" + getTasks());
+    removeTaskCreation();
+
+    removeTaskAtIndex(index);
+    console.log("AFTER" + getTasks());
+    loadTasks(getTasks());
+  });
 }
 
 function addTaskToProject(task, projectName) {
@@ -110,7 +131,8 @@ export function addEditTaskListener(element) {
     addEditTask(element, getTaskAtIndex(element.id));
     toggleElement(element);
     addCancelEditTaskListener(element);
-    addSaveTaskBtnListener(element.id); // TODO make it remove the hidden element
+    addSaveTaskBtnListener(element.id);
+    addRemoveTaskBtnListener(element.id);
   });
 }
 

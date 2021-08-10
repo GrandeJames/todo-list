@@ -33,6 +33,21 @@ export function addEditedTaskItem(task, index, element) {
   );
 }
 
+export function loadTasks(tasks) {
+  const div = document.querySelector("#tasks-container");
+
+  document.querySelector("#tasks-list").remove();
+
+  const ul = document.createElement("ul");
+  ul.id = "tasks-list";
+
+  div.appendChild(ul);
+
+  for (let i = 0; i < tasks.length; i++) {
+    ul.appendChild(getTaskItem(tasks[i], i));
+  }
+}
+
 function getTaskItem(task, index) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");
@@ -40,7 +55,7 @@ function getTaskItem(task, index) {
   const p1 = document.createElement("p");
   const p2 = document.createElement("p");
 
-  taskItem.id = index; //index
+  taskItem.id = index;
 
   taskItem.className = "task-item";
   div1.className = "task";
