@@ -19,5 +19,5 @@ export function loadInitialPage() {
 
   addAddProjectListener();
 
-  loadInitialContent("Inbox");
+  loadInitialContent(document.querySelector("#inbox-container"));
 }

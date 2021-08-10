@@ -59,6 +59,8 @@ function getProjectCreationForm() {
 /*
 PROJECTS
 TODO: load the project content
+    add listener to the menu item after it's created
+        listener will call the loadContent
 TODO: add content for projects
 TODO: fix styling
 TODO: add remove project (on hover)

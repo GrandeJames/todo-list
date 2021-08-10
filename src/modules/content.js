@@ -3,9 +3,12 @@ import { addNewTaskBtnListener } from "./events";
 
 import { loadTasks } from "./tasks";
 
-export function loadInitialContent(name) {
+export function loadInitialContent(menuItem) {
+  const name = menuItem.textContent;
+
   loadContent(name);
   addContentSectionListeners(name);
+  activateMenuItem(menuItem);
 }
 
 export function handleMenuItemClick(menuItem) {
