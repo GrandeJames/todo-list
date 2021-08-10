@@ -82,17 +82,11 @@ function addSaveTaskBtnListener(index) {
   addTitleInputListener(document.querySelector("#save-task-creation-button"));
 }
 
-// RN
-// TODO: WHEN I REMOVE SOMETHING, RELOAD THE CONTENT
 // BUG: REMOVE BUTTON IS INSIDE THE ADD TASK CREATION
 function addRemoveTaskBtnListener(index) {
   addClickListener("#remove-task-button", () => {
-    // reload the page: remove the section then readd the section with the tasks
-    console.log("BEFORE" + getTasks());
     removeTaskCreation();
-
     removeTaskAtIndex(index);
-    console.log("AFTER" + getTasks());
     loadTasks();
   });
 }
