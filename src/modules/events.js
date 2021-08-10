@@ -1,5 +1,3 @@
-import { loadInboxContent } from "./contents/inbox";
-import { loadTodayContent } from "./contents/today";
 import {
   loadTaskCreation,
   removeTaskCreation,
@@ -22,12 +20,17 @@ export function addMenuBtnListener() {
   addClickListener("#menu-button", toggleSidebar);
 }
 
-export function addInboxBtnListener(parentElement) {
-  addClickListener("#inbox-container", () => loadInboxContent(parentElement));
-}
+/*
+  TODO: load the inbox content right away
+  TODO: call addMenuItemListener whenever the button is made (inbox and today is initially. custom is whenever made)
+*/
 
-export function addTodayBtnListener(parentElement) {
-  addClickListener("#today-container", () => loadTodayContent(parentElement));
+import { handleMenuItemClick } from "./content";
+
+export function addMenuItemListener(menuItemElement) {
+  menuItemElement.addEventListener("click", () =>
+    handleMenuItemClick(menuItemElement)
+  );
 }
 
 export function addNewTaskBtnListener(selector, projectName) {

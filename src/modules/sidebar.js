@@ -1,5 +1,7 @@
 import { toggleElement } from "../components/hide";
 
+import { addMenuItemListener } from "./events";
+
 export function addSidebar() {
   const aside = document.createElement("aside");
 
@@ -35,6 +37,9 @@ export function addSidebar() {
   aside.appendChild(div3);
 
   document.querySelector("main").appendChild(aside);
+
+  addMenuItemListener(div1);
+  addMenuItemListener(div2);
 }
 
 export function toggleSidebar() {

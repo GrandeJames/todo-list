@@ -1,11 +1,27 @@
 import { activateMenuItem } from "./menu-item";
 import { addNewTaskBtnListener } from "./events";
 
-export function loadContent(addContent, menuItem, projectName) {
-  removeCurrentContent();
-  addContent();
-  addContentSectionListeners(projectName);
+import { loadTasks } from "./tasks";
+
+export function loadInitialContent(name) {
+  loadContent(name);
+  addContentSectionListeners(name);
+}
+
+export function handleMenuItemClick(menuItem) {
+  const name = menuItem.textContent;
+
+  loadContent(name);
+  addContentSectionListeners(name);
   activateMenuItem(menuItem);
+}
+
+function loadContent(name) {
+  removeCurrentContent();
+  addContentSection(name);
+
+  // TODO: make it load the correct tasks
+  loadTasks();
 }
 
 function removeCurrentContent() {
