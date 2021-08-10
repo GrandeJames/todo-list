@@ -27,3 +27,20 @@ function getTodayTasks() {
 export function getTasks() {
   return tasks;
 }
+
+import { getTaskItem } from "./task";
+
+export function loadTasks() {
+  const div = document.querySelector("#tasks-container");
+
+  document.querySelector("#tasks-list").remove();
+
+  const ul = document.createElement("ul");
+  ul.id = "tasks-list";
+
+  div.appendChild(ul);
+
+  for (let i = 0; i < tasks.length; i++) {
+    ul.appendChild(getTaskItem(tasks[i], i));
+  }
+}

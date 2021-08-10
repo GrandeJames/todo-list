@@ -21,7 +21,6 @@ export class Task {
   }
 }
 
-// Old function is addTaskItem
 export function addNewTaskItem(task, index) {
   document.querySelector("#tasks-list").appendChild(getTaskItem(task, index));
 }
@@ -33,22 +32,7 @@ export function addEditedTaskItem(task, index, element) {
   );
 }
 
-export function loadTasks(tasks) {
-  const div = document.querySelector("#tasks-container");
-
-  document.querySelector("#tasks-list").remove();
-
-  const ul = document.createElement("ul");
-  ul.id = "tasks-list";
-
-  div.appendChild(ul);
-
-  for (let i = 0; i < tasks.length; i++) {
-    ul.appendChild(getTaskItem(tasks[i], i));
-  }
-}
-
-function getTaskItem(task, index) {
+export function getTaskItem(task, index) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");

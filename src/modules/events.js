@@ -13,7 +13,9 @@ import { inboxProject, todayProject } from "../components/initial-page-load";
 import { projects } from "./projects";
 
 // Delete later
-import { addNewTaskItem, addEditedTaskItem, Task, loadTasks } from "./task.js";
+import { addNewTaskItem, addEditedTaskItem, Task } from "./task.js";
+
+import { loadTasks } from "./tasks";
 import { toggleElement } from "../components/hide";
 
 export function addMenuBtnListener() {
@@ -91,7 +93,7 @@ function addRemoveTaskBtnListener(index) {
 
     removeTaskAtIndex(index);
     console.log("AFTER" + getTasks());
-    loadTasks(getTasks());
+    loadTasks();
   });
 }
 
