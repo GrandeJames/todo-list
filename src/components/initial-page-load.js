@@ -4,6 +4,8 @@ import { loadInboxContent } from "../modules/contents/inbox";
 import { Project } from "./project";
 import { projects } from "../modules/projects";
 
+import { addAddProjectListener } from "../modules/events";
+
 export function loadInitialPage() {
   const body = document.querySelector("body");
   const main = document.createElement("main");
@@ -11,6 +13,7 @@ export function loadInitialPage() {
   addHeader(body);
   body.appendChild(main);
   addSidebar();
+  addAddProjectListener();
   loadInboxContent();
 }
 

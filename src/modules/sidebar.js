@@ -7,8 +7,6 @@ export function addSidebar() {
   const div2 = document.createElement("div");
   const div3 = document.createElement("div");
 
-  const p1 = document.createElement("p");
-  const p2 = document.createElement("p");
   const button = document.createElement("button");
 
   const hr = document.createElement("hr");
@@ -24,13 +22,11 @@ export function addSidebar() {
 
   button.id = "add-project-button";
 
-  p1.textContent = "Inbox";
-  p2.textContent = "Today";
+  div1.textContent = "Inbox";
+  div2.textContent = "Today";
 
   button.textContent = "Add project";
 
-  div1.appendChild(p1);
-  div2.appendChild(p2);
   div3.appendChild(button);
 
   aside.appendChild(div1);

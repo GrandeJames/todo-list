@@ -60,7 +60,10 @@ function addSubmitTaskBtnListener(projectName) {
     removeTaskCreation();
   });
 
-  addTitleInputListener(document.querySelector("#submit-task-creation-button"));
+  addInputListener(
+    document.getElementById("title-input"),
+    document.querySelector("#submit-task-creation-button")
+  );
 }
 
 function addSaveTaskBtnListener(index) {
@@ -79,7 +82,10 @@ function addSaveTaskBtnListener(index) {
     document.getElementById(index).remove();
   });
 
-  addTitleInputListener(document.querySelector("#save-task-creation-button"));
+  addInputListener(
+    document.getElementById("title-input"),
+    document.querySelector("#save-task-creation-button")
+  );
 }
 
 // BUG: REMOVE BUTTON IS INSIDE THE ADD TASK CREATION
@@ -99,14 +105,12 @@ function addTaskToProject(task, projectName) {
   });
 }
 
-function addTitleInputListener(element) {
-  const titleInput = document.getElementById("title-input");
-
-  titleInput.addEventListener("input", () => {
-    if (titleInput.value.trim() === "") {
-      element.disabled = true;
+function addInputListener(input, button) {
+  input.addEventListener("input", () => {
+    if (input.value.trim() === "") {
+      button.disabled = true;
     } else {
-      element.disabled = false;
+      button.disabled = false;
     }
   });
 }
@@ -147,6 +151,36 @@ export function hideOnClickOutside() {
   };
 
   document.addEventListener("click", outsideClickListener);
+}
+
+import {
+  handleAddProjectClick,
+  handleCancelProjectCreation,
+  handleAddProject,
+} from "./project-creation";
+
+export function addAddProjectListener() {
+  addClickListener("#add-project-button", () => {
+    handleAddProjectClick();
+
+    addInputListener(
+      document.querySelector("#project-name-input"),
+      document.querySelector("#add-project-creation-button")
+    );
+    addCancelProjectCreationBtnListener();
+    addAddProjectCreationBtnListener();
+  });
+}
+
+function addCancelProjectCreationBtnListener() {
+  addClickListener(
+    "#cancel-project-creation-button",
+    handleCancelProjectCreation
+  );
+}
+
+function addAddProjectCreationBtnListener() {
+  addClickListener("#add-project-creation-button", handleAddProject);
 }
 
 function addClickListener(selector, callback) {
