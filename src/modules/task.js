@@ -5,9 +5,10 @@ export class Task {
   title;
   description;
 
-  constructor(title, description) {
+  constructor(title, description, project) {
     this.title = title;
     this.description = description;
+    this.project = project;
     //this.dueDate = dueDate;
     //this.priority = priority;
   }

@@ -8,8 +8,6 @@ import { toggleSidebar } from "./sidebar";
 
 import { inboxProject, todayProject } from "../components/initial-page-load";
 
-import { projects } from "./projects";
-
 // Delete later
 import { addNewTaskItem, addEditedTaskItem, Task } from "./task.js";
 
@@ -19,11 +17,6 @@ import { toggleElement } from "../components/hide";
 export function addMenuBtnListener() {
   addClickListener("#menu-button", toggleSidebar);
 }
-
-/*
-  TODO: load the inbox content right away
-  TODO: call addMenuItemListener whenever the button is made (inbox and today is initially. custom is whenever made)
-*/
 
 import { handleMenuItemClick } from "./content";
 
@@ -55,11 +48,17 @@ function addSubmitTaskBtnListener(projectName) {
     const titleInput = document.getElementById("title-input");
     const descriptionInput = document.getElementById("description-input");
 
-    let task = new Task(titleInput.value, descriptionInput.value);
+    let task;
+    if (projectName === "Today" || projectName === "Inbox") {
+      task = new Task(titleInput.value, descriptionInput.value);
+    } else {
+      task = new Task(titleInput.value, descriptionInput.value, projectName);
+    }
+
     addTask(task);
+    // TODO: if task is defined in today, its due date should automatically be today, so add default value for that
 
     addNewTaskItem(task, getTaskId(task));
-    addTaskToProject(task, projectName);
     removeTaskCreation();
   });
 
@@ -97,14 +96,6 @@ function addRemoveTaskBtnListener(index) {
     removeTaskCreation();
     removeTaskAtIndex(index);
     loadTasks();
-  });
-}
-
-function addTaskToProject(task, projectName) {
-  projects.forEach(project => {
-    if (project.name === projectName) {
-      project.addTask(task);
-    }
   });
 }
 

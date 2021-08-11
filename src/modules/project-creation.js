@@ -58,10 +58,13 @@ function getProjectCreationForm() {
 
 /*
 PROJECTS
-TODO: load the project content
-    add listener to the menu item after it's created
-        listener will call the loadContent
 TODO: add content for projects
+    TODO: add tasks for the projects
+        have an array of all the tasks (filter these)
+            if it doesn't have a project, load it to inbox
+            if it's due today, load that task
+            if has project, load that if it's the correct project
+TODO: add tasks for today (this should filter all the tasks due today)
 TODO: fix styling
 TODO: add remove project (on hover)
 */

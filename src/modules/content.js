@@ -20,7 +20,7 @@ function loadContent(name) {
   addContentSection(name);
 
   // TODO: make it load the correct tasks
-  loadTasks();
+  loadTasks(name);
 }
 
 function removeCurrentContent() {

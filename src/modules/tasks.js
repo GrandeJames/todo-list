@@ -16,31 +16,53 @@ export function removeTaskAtIndex(index) {
   tasks.splice(index, 1);
 }
 
-// Only projects are inbox and whatever made
-function getProjectTasks(project) {}
-
-// Today will just filter out the tasks due today
-function getTodayTasks() {
-  //tasks.filter(t)
-}
-
 export function getTasks() {
   return tasks;
 }
 
 import { getTaskItem } from "./task";
 
-export function loadTasks() {
-  const div = document.querySelector("#tasks-container");
+export function loadTasks(name) {
+  addEmptyTasksList();
+  addTasks(name);
 
+  console.log({ tasks });
+}
+
+function addEmptyTasksList() {
   document.querySelector("#tasks-list").remove();
 
   const ul = document.createElement("ul");
   ul.id = "tasks-list";
 
-  div.appendChild(ul);
+  document.querySelector("#tasks-container").appendChild(ul);
+}
 
-  for (let i = 0; i < tasks.length; i++) {
-    ul.appendChild(getTaskItem(tasks[i], i));
+function addTasks(menuItemName) {
+  if (menuItemName === "Inbox") {
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].project === undefined) {
+        document
+          .querySelector("#tasks-list")
+          .appendChild(getTaskItem(tasks[i], i));
+      }
+    }
+  } else if (menuItemName === "Today") {
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].dueDate !== undefined) {
+        // If due date is today
+        // THIS CAN BE ANY TASK (ALL TASKS)
+      }
+    }
+  } else {
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].project === menuItemName) {
+        document
+          .querySelector("#tasks-list")
+          .appendChild(getTaskItem(tasks[i], i));
+      }
+    }
   }
 }
+
+// Today will filter out all the tasks due today
