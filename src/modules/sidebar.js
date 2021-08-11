@@ -1,8 +1,12 @@
-import { toggleElement } from "../components/hide";
+import { toggleElement } from "../components/toggleElement";
+import { addMenuItemListener, addAddProjectListener } from "./events";
 
-import { addMenuItemListener } from "./events";
+export function loadSidebar(parentElement) {
+  addSidebar(parentElement);
+  addSidebarListeners();
+}
 
-export function addSidebar() {
+function addSidebar(parentElement) {
   const aside = document.createElement("aside");
 
   const div1 = document.createElement("div");
@@ -36,10 +40,13 @@ export function addSidebar() {
   aside.appendChild(hr);
   aside.appendChild(div3);
 
-  document.querySelector("main").appendChild(aside);
+  parentElement.appendChild(aside);
+}
 
-  addMenuItemListener(div1);
-  addMenuItemListener(div2);
+function addSidebarListeners() {
+  addMenuItemListener(document.querySelector("#inbox-container"));
+  addMenuItemListener(document.querySelector("#today-container"));
+  addAddProjectListener();
 }
 
 export function toggleSidebar() {

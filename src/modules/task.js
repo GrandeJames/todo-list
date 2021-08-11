@@ -1,5 +1,3 @@
-// Inbox is just a list of ALL tasks
-// Today is just a list of all the tasks due TODAY
 import { addEditTaskListener } from "./events";
 export class Task {
   title;
@@ -22,20 +20,20 @@ export class Task {
   }
 }
 
-export function addNewTaskItem(task, index) {
-  document.querySelector("#tasks-list").appendChild(getTaskItem(task, index));
+export function loadTaskElement(task, index) {
+  const taskItem = getTaskItem(task, index);
+
+  document.querySelector("#tasks-list").appendChild(taskItem);
+  addEditTaskListener(taskItem);
 }
+// TOOD:FIX THIS
 
-export function addEditedTaskItem(task, index, element) {
-  element.parentElement.insertBefore(
-    getTaskItem(task, index),
-    element.nextSibling
-  );
+export function loadEditedTaskElement(task, index, element) {
+  const taskItem = getTaskItem(task, index);
+
+  element.parentElement.insertBefore(taskItem, element.nextSibling);
+  addEditTaskListener(taskItem);
 }
-
-function loadTaskItem(task, index) {}
-
-function addTaskItem() {}
 
 export function getTaskItem(task, index) {
   const taskItem = document.createElement("li");
@@ -44,7 +42,7 @@ export function getTaskItem(task, index) {
   const p1 = document.createElement("p");
   const p2 = document.createElement("p");
 
-  taskItem.id = index;
+  taskItem.setAttribute("data-index", index);
 
   taskItem.className = "task-item";
   div1.className = "task";
@@ -61,9 +59,6 @@ export function getTaskItem(task, index) {
   div1.appendChild(div2);
 
   taskItem.appendChild(div1);
-
-  // TODO: move?
-  addEditTaskListener(taskItem);
 
   return taskItem;
 }

@@ -1,26 +1,19 @@
 import { activateMenuItem } from "./menu-item";
 import { addNewTaskBtnListener } from "./events";
-
 import { loadTasks } from "./tasks";
 
-export function handleMenuItemClick(menuItem) {
-  loadPage(menuItem);
-}
+export function loadContentSection(menuItem) {
+  const menuItemName = menuItem.textContent;
 
-export function loadPage(menuItem) {
-  const name = menuItem.textContent;
-
-  loadContent(name);
-  addContentSectionListeners(name);
+  loadContent(menuItemName);
+  addContentListeners(menuItemName);
   activateMenuItem(menuItem);
 }
 
-function loadContent(name) {
+function loadContent(menuItemName) {
   removeCurrentContent();
-  addContentSection(name);
-
-  // TODO: make it load the correct tasks
-  loadTasks(name);
+  addContentSection(menuItemName);
+  loadTasks(menuItemName);
 }
 
 function removeCurrentContent() {
@@ -29,32 +22,28 @@ function removeCurrentContent() {
   }
 }
 
-function addContentSectionListeners(projectName) {
-  addNewTaskBtnListener(".content-section", projectName);
-}
-
-export function addContentSection(heading) {
+function addContentSection(menuItemName) {
   const section = document.createElement("section");
 
   section.className = "content-section";
 
-  addContentHeading(section, heading);
-  addTaskSection(section);
-  addNewTaskButton(section);
+  addContentHeading(section, menuItemName);
+  addTasksContainer(section);
+  addAddTaskButton(section);
 
   document.querySelector("main").appendChild(section);
 }
 
-function addContentHeading(parentElement, heading) {
+function addContentHeading(parentElement, menuItemName) {
   const h1 = document.createElement("h1");
 
   h1.classList = "content-heading";
-  h1.textContent = heading;
+  h1.textContent = menuItemName;
 
   parentElement.appendChild(h1);
 }
 
-function addTaskSection(parentElement) {
+function addTasksContainer(parentElement) {
   const div = document.createElement("div");
   const ul = document.createElement("ul");
 
@@ -66,11 +55,15 @@ function addTaskSection(parentElement) {
   parentElement.appendChild(div);
 }
 
-function addNewTaskButton(parentElement) {
+function addAddTaskButton(parentElement) {
   const button = document.createElement("button");
 
   button.id = "new-task-button";
-  button.textContent = "Add new task";
+  button.textContent = "Add task";
 
   parentElement.appendChild(button);
+}
+
+function addContentListeners(menuItemName) {
+  addNewTaskBtnListener(menuItemName);
 }

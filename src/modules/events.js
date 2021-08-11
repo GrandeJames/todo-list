@@ -2,63 +2,59 @@ import {
   loadTaskCreation,
   removeTaskCreation,
   addEditTask,
-  hideTaskItem,
 } from "./task-creation";
 import { toggleSidebar } from "./sidebar";
-
-import { inboxProject, todayProject } from "../components/initial-page-load";
-
-// Delete later
-import { addNewTaskItem, addEditedTaskItem, Task } from "./task.js";
-
-import { loadTasks } from "./tasks";
-import { toggleElement } from "../components/hide";
+import { loadTaskElement, loadEditedTaskElement, Task } from "./task";
+import { toggleElement } from "../components/toggleElement";
+import {
+  loadTasks,
+  addTask,
+  getTaskAtIndex,
+  getTaskId,
+  removeTaskAtIndex,
+} from "./tasks";
+import {
+  handleAddProjectClick,
+  handleCancelProjectCreation,
+  handleAddProject,
+} from "./project-creation";
+import { loadContentSection } from "./content-section";
 
 export function addMenuBtnListener() {
-  addClickListener("#menu-button", toggleSidebar);
+  const button = document.querySelector("#menu-button");
+  addClickListener(button, toggleSidebar);
 }
 
-import { handleMenuItemClick } from "./content";
-
-export function addMenuItemListener(menuItemElement) {
-  menuItemElement.addEventListener("click", () =>
-    handleMenuItemClick(menuItemElement)
-  );
+export function addMenuItemListener(menuItem) {
+  addClickListener(menuItem, () => loadContentSection(menuItem));
 }
 
-export function addNewTaskBtnListener(selector, projectName) {
-  addClickListener("#new-task-button", () => {
-    loadTaskCreation(selector);
+export function addNewTaskBtnListener(projectName) {
+  const button = document.querySelector("#new-task-button");
 
-    addSubmitTaskBtnListener(projectName);
+  addClickListener(button, () => {
+    loadTaskCreation();
+    addAddTaskBtnListener(projectName);
     addCancelTaskCreationListener();
   });
 }
 
-import {
-  addTask,
-  getTaskAtIndex,
-  getTaskId,
-  getTasks,
-  removeTaskAtIndex,
-} from "./tasks";
+function addAddTaskBtnListener(projectName) {
+  const button = document.querySelector("#submit-task-creation-button");
 
-function addSubmitTaskBtnListener(projectName) {
-  addClickListener("#submit-task-creation-button", () => {
+  addClickListener(button, () => {
     const titleInput = document.getElementById("title-input");
     const descriptionInput = document.getElementById("description-input");
 
-    let task;
-    if (projectName === "Today" || projectName === "Inbox") {
-      task = new Task(titleInput.value, descriptionInput.value);
-    } else {
-      task = new Task(titleInput.value, descriptionInput.value, projectName);
-    }
+    let task =
+      projectName === "Today" || projectName === "Inbox"
+        ? new Task(titleInput.value, descriptionInput.value)
+        : new Task(titleInput.value, descriptionInput.value, projectName);
 
     addTask(task);
     // TODO: if task is defined in today, its due date should automatically be today, so add default value for that
 
-    addNewTaskItem(task, getTaskId(task));
+    loadTaskElement(task, getTaskId(task));
     removeTaskCreation();
   });
 
@@ -69,7 +65,9 @@ function addSubmitTaskBtnListener(projectName) {
 }
 
 function addSaveTaskBtnListener(index) {
-  addClickListener("#save-task-creation-button", () => {
+  const button = document.querySelector("#save-task-creation-button");
+
+  addClickListener(button, () => {
     const titleInput = document.getElementById("title-input");
     const descriptionInput = document.getElementById("description-input");
 
@@ -77,7 +75,7 @@ function addSaveTaskBtnListener(index) {
     task.title = titleInput.value;
     task.description = descriptionInput.value;
 
-    addEditedTaskItem(task, index, document.getElementById(index));
+    loadEditedTaskElement(task, index, document.getElementById(index));
 
     removeTaskCreation();
 
@@ -92,38 +90,38 @@ function addSaveTaskBtnListener(index) {
 
 // BUG: REMOVE BUTTON IS INSIDE THE ADD TASK CREATION
 function addRemoveTaskBtnListener(index) {
-  addClickListener("#remove-task-button", () => {
-    removeTaskCreation();
+  const button = document.querySelector("#remove-task-button");
+
+  addClickListener(button, () => {
+    //removeTaskCreation(); // might not be needed
     removeTaskAtIndex(index);
-    loadTasks(); // BUG THIS IS LOADING WHOLE THING
-    loadPage();
+    loadContentSection();
   });
 }
 
 function addInputListener(input, button) {
   input.addEventListener("input", () => {
-    if (input.value.trim() === "") {
-      button.disabled = true;
-    } else {
-      button.disabled = false;
-    }
+    button.disabled = input.value.trim() === "" ? true : false;
   });
 }
 
 function addCancelTaskCreationListener() {
-  addClickListener("#cancel-task-creation-button", removeTaskCreation);
+  const button = document.querySelector("#cancel-task-creation-button");
+  addClickListener(button, removeTaskCreation);
 }
 
 function addCancelEditTaskListener(element) {
-  addClickListener("#cancel-task-creation-button", () => {
+  const button = document.querySelector("#cancel-task-creation-button");
+
+  addClickListener(button, () => {
     removeTaskCreation();
     toggleElement(element);
   });
 }
 
 export function addEditTaskListener(element) {
-  element.addEventListener("click", () => {
-    addEditTask(element, getTaskAtIndex(element.id));
+  addClickListener(element, () => {
+    addEditTask(element, getTaskAtIndex(element.getAttribute("data-index")));
     toggleElement(element);
     addCancelEditTaskListener(element);
     addSaveTaskBtnListener(element.id);
@@ -131,31 +129,10 @@ export function addEditTaskListener(element) {
   });
 }
 
-export function hideOnClickOutside() {
-  const outsideClickListener = event => {
-    if (event.target.closest("#task-creation-container") === null) {
-      //removeClickListener();
-      console.log("test1");
-    } else {
-      console.log("test2");
-    }
-  };
-
-  const removeClickListener = () => {
-    document.removeEventListener("click", outsideClickListener);
-  };
-
-  document.addEventListener("click", outsideClickListener);
-}
-
-import {
-  handleAddProjectClick,
-  handleCancelProjectCreation,
-  handleAddProject,
-} from "./project-creation";
-
 export function addAddProjectListener() {
-  addClickListener("#add-project-button", () => {
+  const button = document.querySelector("#add-project-button");
+
+  addClickListener(button, () => {
     handleAddProjectClick();
 
     addInputListener(
@@ -168,24 +145,21 @@ export function addAddProjectListener() {
 }
 
 function addCancelProjectCreationBtnListener() {
-  addClickListener(
-    "#cancel-project-creation-button",
-    handleCancelProjectCreation
-  );
+  const button = document.querySelector("#cancel-project-creation-button");
+  addClickListener(button, handleCancelProjectCreation);
 }
 
 function addAddProjectCreationBtnListener() {
-  addClickListener("#add-project-creation-button", handleAddProject);
+  const button = document.querySelector("#add-project-creation-button");
+  addClickListener(button, handleAddProject);
 }
 
-import { loadPage } from "./content";
-
 export function loadProjectListener(project) {
-  project.addEventListener("click", () => {
-    loadPage(project);
+  addClickListener(project, () => {
+    loadContentSection(project);
   });
 }
 
-function addClickListener(selector, callback) {
-  document.querySelector(selector).addEventListener("click", callback);
+function addClickListener(element, callbackFn) {
+  element.addEventListener("click", callbackFn);
 }

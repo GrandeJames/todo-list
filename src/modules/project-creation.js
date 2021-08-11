@@ -1,10 +1,9 @@
-// TODO: add projects
 // TODO: add due dates
 // TODO: add today content
 // TODO: add checklists (squares)
 // BUG: clicking on stuff outside of task creation
 
-import { toggleElement } from "../components/hide";
+import { toggleElement } from "../components/toggleElement";
 
 export function handleAddProjectClick() {
   toggleElement(document.querySelector("#add-project-button"));
@@ -56,24 +55,12 @@ function getProjectCreationForm() {
   return form;
 }
 
-/*
-PROJECTS
-TODO: add default value for the dueDate
-TODO: add content for projects
-    TODO: add tasks for the projects
-        have an array of all the tasks (filter these)
-            if it's due today, load that task
-TODO: add tasks for today (this should filter all the tasks due today)
-TODO: fix styling
-TODO: add remove project (on hover)
-*/
-
 export function handleCancelProjectCreation() {
   stopProjectCreation();
 }
 
 import { loadProjectListener } from "./events";
-import { loadPage } from "./content";
+import { loadContentSection } from "./content-section";
 
 export function handleAddProject() {
   const project = getProject();
@@ -81,7 +68,7 @@ export function handleAddProject() {
   insertProject(project);
   stopProjectCreation();
   loadProjectListener(project);
-  loadPage(project);
+  loadContentSection(project);
 }
 
 function insertProject(project) {

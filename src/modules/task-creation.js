@@ -1,18 +1,17 @@
-import { toggleElement } from "../components/hide";
+import { toggleElement } from "../components/toggleElement";
 
-export function loadTaskCreation(selector) {
-  addCreateTask(selector);
+export function loadTaskCreation() {
+  addCreateTask();
   toggleCreateTaskBtn();
   addTaskCreationButtons(document.querySelector("#task-creation-container"));
 }
 
-//remove?
-import { hideOnClickOutside } from "./events";
+function addCreateTask() {
+  document.querySelector(".content-section").appendChild(getTaskCreation());
+}
 
 export function addEditTask(element, task) {
   // TODO: if clicked on anything else other than inside the
-
-  // add remove functionality, add save functionality that removes the hidden element and add the new saved one
 
   const taskCreation = getTaskCreation();
 
@@ -24,11 +23,11 @@ export function addEditTask(element, task) {
 
   addEditTaskButtons(document.querySelector("#task-creation-container"));
 
+  console.log(task);
+  /*
   document.querySelector("#title-input").value = task.title;
   document.querySelector("#description-input").value = task.description;
-
-  //remove?
-  hideOnClickOutside();
+  */
 }
 
 function addEditTaskButtons(parentElement) {
@@ -49,10 +48,6 @@ function addSaveTaskButton(parentElement) {
   input.value = "Save task";
 
   parentElement.appendChild(input);
-}
-
-function addCreateTask(selector) {
-  document.querySelector(selector).appendChild(getTaskCreation());
 }
 
 export function removeTaskCreation() {

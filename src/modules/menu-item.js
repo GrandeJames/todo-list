@@ -1,9 +1,9 @@
 export function activateMenuItem(menuItem) {
-  deactivateMenuItems();
+  deactivateAllMenuItems();
   addActiveToMenuItem(menuItem);
 }
 
-function deactivateMenuItems() {
+function deactivateAllMenuItems() {
   document.querySelectorAll(".menu-item").forEach(menuItem => {
     if (menuItem.classList.contains("active")) {
       menuItem.classList.remove("active");

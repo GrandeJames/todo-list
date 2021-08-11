@@ -1,3 +1,5 @@
+import { loadTaskElement } from "./task";
+
 let tasks = [];
 
 export function addTask(task) {
@@ -20,13 +22,9 @@ export function getTasks() {
   return tasks;
 }
 
-import { getTaskItem } from "./task";
-
 export function loadTasks(name) {
   addEmptyTasksList();
-  addTasks(name);
-
-  console.log({ tasks });
+  addTasksToTasksList(name);
 }
 
 function addEmptyTasksList() {
@@ -38,31 +36,26 @@ function addEmptyTasksList() {
   document.querySelector("#tasks-container").appendChild(ul);
 }
 
-function addTasks(menuItemName) {
+function addTasksToTasksList(menuItemName) {
+  let tasksToAdd = [];
   if (menuItemName === "Inbox") {
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i].project === undefined) {
-        document
-          .querySelector("#tasks-list")
-          .appendChild(getTaskItem(tasks[i], i));
-      }
-    }
+    tasksToAdd = getInboxTasks();
   } else if (menuItemName === "Today") {
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i].dueDate !== undefined) {
-        // If due date is today
-        // THIS CAN BE ANY TASK (ALL TASKS)
-      }
-    }
+    // TODO
   } else {
-    for (let i = 0; i < tasks.length; i++) {
-      if (tasks[i].project === menuItemName) {
-        document
-          .querySelector("#tasks-list")
-          .appendChild(getTaskItem(tasks[i], i));
-      }
-    }
+    tasksToAdd = getProjectTasks(menuItemName);
   }
+  appendTasks(tasksToAdd);
 }
 
-// Today will filter out all the tasks due today
+function getInboxTasks() {
+  return tasks.filter(task => task.project === undefined);
+}
+
+function getProjectTasks(projectName) {
+  return tasks.filter(task => task.project === projectName);
+}
+
+function appendTasks(tasksToAdd) {
+  tasksToAdd.forEach((task, index) => loadTaskElement(task, index));
+}
