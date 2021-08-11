@@ -14,3 +14,13 @@ function deactivateAllMenuItems() {
 function addActiveToMenuItem(menuItem) {
   menuItem.classList.add("active");
 }
+
+export function getActiveMenuItem() {
+  const menuItems = Array.from(document.querySelectorAll(".menu-item"));
+
+  for (let i = 0; i < menuItems.length; i++) {
+    if (menuItems[i].classList.contains("active")) {
+      return menuItems[i];
+    }
+  }
+}

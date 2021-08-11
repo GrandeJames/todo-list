@@ -23,11 +23,8 @@ export function addEditTask(element, task) {
 
   addEditTaskButtons(document.querySelector("#task-creation-container"));
 
-  console.log(task);
-  /*
   document.querySelector("#title-input").value = task.title;
   document.querySelector("#description-input").value = task.description;
-  */
 }
 
 function addEditTaskButtons(parentElement) {

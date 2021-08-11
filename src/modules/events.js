@@ -19,6 +19,7 @@ import {
   handleAddProject,
 } from "./project-creation";
 import { loadContentSection } from "./content-section";
+import { getActiveMenuItem } from "./menu-item";
 
 export function addMenuBtnListener() {
   const button = document.querySelector("#menu-button");
@@ -95,7 +96,7 @@ function addRemoveTaskBtnListener(index) {
   addClickListener(button, () => {
     //removeTaskCreation(); // might not be needed
     removeTaskAtIndex(index);
-    loadContentSection();
+    loadContentSection(getActiveMenuItem());
   });
 }
 
@@ -119,13 +120,13 @@ function addCancelEditTaskListener(element) {
   });
 }
 
-export function addEditTaskListener(element) {
-  addClickListener(element, () => {
-    addEditTask(element, getTaskAtIndex(element.getAttribute("data-index")));
-    toggleElement(element);
-    addCancelEditTaskListener(element);
-    addSaveTaskBtnListener(element.id);
-    addRemoveTaskBtnListener(element.id);
+export function addEditTaskListener(taskItem) {
+  addClickListener(taskItem, () => {
+    addEditTask(taskItem, getTaskAtIndex(taskItem.getAttribute("data-index")));
+    toggleElement(taskItem);
+    addCancelEditTaskListener(taskItem);
+    addSaveTaskBtnListener(taskItem.id);
+    addRemoveTaskBtnListener(taskItem.id);
   });
 }
 
