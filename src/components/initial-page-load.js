@@ -5,7 +5,7 @@ import { projects } from "../modules/projects";
 
 import { addAddProjectListener } from "../modules/events";
 
-import { loadInitialContent } from "../modules/content";
+import { loadPage } from "../modules/content";
 
 export function loadInitialPage() {
   const body = document.querySelector("body");
@@ -19,5 +19,5 @@ export function loadInitialPage() {
 
   addAddProjectListener();
 
-  loadInitialContent(document.querySelector("#inbox-container"));
+  loadPage(document.querySelector("#inbox-container"));
 }

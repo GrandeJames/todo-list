@@ -186,6 +186,14 @@ function addAddProjectCreationBtnListener() {
   addClickListener("#add-project-creation-button", handleAddProject);
 }
 
+import { loadPage } from "./content";
+
+export function loadProjectListener(project) {
+  project.addEventListener("click", () => {
+    loadPage(project);
+  });
+}
+
 function addClickListener(selector, callback) {
   document.querySelector(selector).addEventListener("click", callback);
 }

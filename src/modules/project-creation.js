@@ -70,14 +70,21 @@ export function handleCancelProjectCreation() {
   stopProjectCreation();
 }
 
+import { loadProjectListener } from "./events";
+import { loadPage } from "./content";
+
 export function handleAddProject() {
-  insertProject();
+  const project = getProject();
+
+  insertProject(project);
   stopProjectCreation();
+  loadProjectListener(project);
+  loadPage(project);
 }
 
-function insertProject() {
+function insertProject(project) {
   const element = document.querySelector("#add-project-button");
-  element.parentElement.insertBefore(getProject(), element);
+  element.parentElement.insertBefore(project, element);
 }
 
 function getProject() {
