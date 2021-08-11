@@ -95,7 +95,8 @@ function addRemoveTaskBtnListener(index) {
   addClickListener("#remove-task-button", () => {
     removeTaskCreation();
     removeTaskAtIndex(index);
-    loadTasks();
+    loadTasks(); // BUG THIS IS LOADING WHOLE THING
+    loadPage();
   });
 }
 

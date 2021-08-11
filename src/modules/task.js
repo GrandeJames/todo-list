@@ -33,6 +33,10 @@ export function addEditedTaskItem(task, index, element) {
   );
 }
 
+function loadTaskItem(task, index) {}
+
+function addTaskItem() {}
+
 export function getTaskItem(task, index) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");

@@ -18,6 +18,8 @@ export function addEditTask(element, task) {
 
   element.parentElement.insertBefore(taskCreation, element.nextSibling);
 
+  appendRemoveButton();
+
   toggleCreateTaskBtn();
 
   addEditTaskButtons(document.querySelector("#task-creation-container"));
@@ -97,6 +99,15 @@ function addCancelButton(parentElement) {
   parentElement.appendChild(input);
 }
 
+function appendRemoveButton() {
+  const input4 = document.createElement("input");
+  input4.id = "remove-task-button";
+  input4.type = "button";
+  input4.value = "Remove";
+
+  document.querySelector(".bottom-input-container").appendChild(input4);
+}
+
 function getTaskCreation() {
   const form = document.createElement("form");
   form.id = "task-creation-container";
@@ -112,7 +123,6 @@ function getTaskCreation() {
   const label2 = document.createElement("label");
 
   const input3 = document.createElement("input");
-  const input4 = document.createElement("input");
 
   const select = document.createElement("select");
 
@@ -127,7 +137,6 @@ function getTaskCreation() {
   input1.id = "title-input";
   input2.id = "description-input";
   input3.id = "due-date";
-  input4.id = "remove-task-button";
 
   input1.placeholder = "Title";
   input2.placeholder = "Description";
@@ -135,19 +144,14 @@ function getTaskCreation() {
   input1.required = true;
 
   input3.type = "date";
-  input4.type = "button";
 
   label2.setAttribute("for", "priority");
   label2.textContent = "Priority: ";
-
-  input4.value = "Remove";
 
   div3.appendChild(input3);
 
   div3.appendChild(label2);
   div3.appendChild(select);
-
-  div3.appendChild(input4);
 
   div2.appendChild(input1);
   div2.appendChild(input2);
