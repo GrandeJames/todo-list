@@ -7,15 +7,11 @@ function init() {
   loadInitialPage();
 }
 
-// TODO: add due dates
-// TODO: add today content
-// TODO: add checklists (squares)
-// BUG: clicking on stuff outside of task creation
-
 /*
-PROJECTS
-TODO: add default value for the dueDate
-TODO: add tasks for today (this should filter all the tasks due today)
+TODO: on edit task creation, show the date
+TODO: add priorities
 TODO: fix styling
+TODO: add checklists (squares)
+BUG: clicking on stuff outside of task creation
 TODO: add remove project (on hover)
 */

@@ -33,6 +33,7 @@ export function addEditTask(element, task) {
 
   document.querySelector("#title-input").value = task.title;
   document.querySelector("#description-input").value = task.description;
+  document.querySelector("#due-date").value = task.dueDate;
 }
 
 function addEditTaskButtons(parentElement) {
