@@ -125,8 +125,8 @@ export function addEditTaskListener(taskItem) {
     addEditTask(taskItem, getTaskAtIndex(taskItem.getAttribute("data-index")));
     toggleElement(taskItem);
     addCancelEditTaskListener(taskItem);
-    addSaveTaskBtnListener(taskItem.id);
-    addRemoveTaskBtnListener(taskItem.id);
+    addSaveTaskBtnListener(taskItem.getAttribute("data-index"));
+    addRemoveTaskBtnListener(taskItem.getAttribute("data-index"));
   });
 }
 
