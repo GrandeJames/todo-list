@@ -93,6 +93,7 @@ function addRemoveTaskBtnListener(index) {
   const button = document.querySelector("#remove-task-button");
 
   addClickListener(button, () => {
+    console.log("removed task with index" + index);
     removeTaskAtIndex(index);
     loadContentSection(getActiveMenuItem());
   });
