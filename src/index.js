@@ -7,6 +7,11 @@ function init() {
   loadInitialPage();
 }
 
+// TODO: add due dates
+// TODO: add today content
+// TODO: add checklists (squares)
+// BUG: clicking on stuff outside of task creation
+
 /*
 PROJECTS
 TODO: add default value for the dueDate

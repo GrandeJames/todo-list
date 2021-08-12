@@ -26,7 +26,6 @@ export function loadTaskElement(task, index) {
   document.querySelector("#tasks-list").appendChild(taskItem);
   addEditTaskListener(taskItem);
 }
-// TOOD:FIX THIS
 
 export function loadEditedTaskElement(task, index, element) {
   const taskItem = getTaskItem(task, index);

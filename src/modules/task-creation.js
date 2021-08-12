@@ -11,8 +11,6 @@ function addCreateTask() {
 }
 
 export function addEditTask(element, task) {
-  // TODO: if clicked on anything else other than inside the
-
   const taskCreation = getTaskCreation();
 
   element.parentElement.insertBefore(taskCreation, element.nextSibling);

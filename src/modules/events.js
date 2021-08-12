@@ -89,12 +89,10 @@ function addSaveTaskBtnListener(index) {
   );
 }
 
-// BUG: REMOVE BUTTON IS INSIDE THE ADD TASK CREATION
 function addRemoveTaskBtnListener(index) {
   const button = document.querySelector("#remove-task-button");
 
   addClickListener(button, () => {
-    //removeTaskCreation(); // might not be needed
     removeTaskAtIndex(index);
     loadContentSection(getActiveMenuItem());
   });

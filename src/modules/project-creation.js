@@ -1,8 +1,3 @@
-// TODO: add due dates
-// TODO: add today content
-// TODO: add checklists (squares)
-// BUG: clicking on stuff outside of task creation
-
 import { toggleElement } from "../components/toggleElement";
 
 export function handleAddProjectClick() {
