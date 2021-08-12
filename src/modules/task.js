@@ -3,13 +3,14 @@ export class Task {
   title;
   description;
   dueDate;
+  priority;
   project;
 
-  constructor(title, description, dueDate, project) {
+  constructor(title, description, dueDate, priority, project) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
-    //this.priority = priority;
+    this.priority = priority;
     this.project = project;
   }
 
@@ -23,6 +24,10 @@ export class Task {
 
   get dueDate() {
     return this.dueDate;
+  }
+
+  get priority() {
+    return this.priority;
   }
 }
 
@@ -57,6 +62,7 @@ export function getTaskItem(task, index) {
 
   p1.textContent = task.title;
   p2.textContent = task.description;
+  // TODO: this should have due date and priority?
 
   div2.appendChild(p1);
   div2.appendChild(p2);

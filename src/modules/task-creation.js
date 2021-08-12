@@ -34,6 +34,7 @@ export function addEditTask(element, task) {
   document.querySelector("#title-input").value = task.title;
   document.querySelector("#description-input").value = task.description;
   document.querySelector("#due-date").value = task.dueDate;
+  document.querySelector("#priority").value = task.priority;
 }
 
 function addEditTaskButtons(parentElement) {
@@ -121,11 +122,12 @@ function getTaskCreation() {
   const input1 = document.createElement("input");
   const input2 = document.createElement("input");
 
-  const label2 = document.createElement("label");
-
   const input3 = document.createElement("input");
 
   const select = document.createElement("select");
+  const option1 = document.createElement("option");
+  const option2 = document.createElement("option");
+  const option3 = document.createElement("option");
 
   div1.classList = "input-task-container";
 
@@ -138,6 +140,7 @@ function getTaskCreation() {
   input1.id = "title-input";
   input2.id = "description-input";
   input3.id = "due-date";
+  select.id = "priority";
 
   input1.placeholder = "Title";
   input2.placeholder = "Description";
@@ -146,12 +149,20 @@ function getTaskCreation() {
 
   input3.type = "date";
 
-  label2.setAttribute("for", "priority");
-  label2.textContent = "Priority: ";
+  option1.value = "low";
+  option2.value = "medium";
+  option3.value = "high";
+
+  option1.textContent = "Low Priority";
+  option2.textContent = "Medium Priority";
+  option3.textContent = "High Priority";
+
+  select.appendChild(option1);
+  select.appendChild(option2);
+  select.appendChild(option3);
 
   div3.appendChild(input3);
 
-  div3.appendChild(label2);
   div3.appendChild(select);
 
   div2.appendChild(input1);

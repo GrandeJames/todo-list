@@ -42,6 +42,7 @@ function addAddTaskBtnListener(projectName) {
     const descriptionInputValue =
       document.getElementById("description-input").value;
     const dueDateInputValue = document.getElementById("due-date").value;
+    const priorityValue = document.getElementById("priority").value;
 
     if (projectName === "Today" || projectName === "Inbox") {
       projectName = null;
@@ -51,6 +52,7 @@ function addAddTaskBtnListener(projectName) {
       titleInputValue,
       descriptionInputValue,
       dueDateInputValue,
+      priorityValue,
       projectName
     );
 
@@ -73,12 +75,14 @@ function addSaveTaskBtnListener(index) {
     const descriptionInputValue =
       document.getElementById("description-input").value;
     const dueDateValue = document.getElementById("due-date").value;
+    const priorityValue = document.getElementById("priority").value;
 
     let task = getTaskAtIndex(index);
 
     task.title = titleInputValue;
     task.description = descriptionInputValue;
     task.dueDate = dueDateValue;
+    task.priority = priorityValue;
 
     const taskItem = document.querySelector(`[data-index="${index}"]`);
 
