@@ -6,13 +6,7 @@ import {
 import { toggleSidebar } from "./sidebar";
 import { loadTaskElement, loadEditedTaskElement, Task } from "./task";
 import { toggleElement } from "../components/toggleElement";
-import {
-  loadTasks,
-  addTask,
-  getTaskAtIndex,
-  getTaskId,
-  removeTaskAtIndex,
-} from "./tasks";
+import { addTask, getTaskAtIndex, getTaskId, removeTaskAtIndex } from "./tasks";
 import {
   handleAddProjectClick,
   handleCancelProjectCreation,
@@ -34,13 +28,11 @@ export function addNewTaskBtnListener(projectName) {
   const button = document.querySelector("#new-task-button");
 
   addClickListener(button, () => {
-    loadTaskCreation(projectName); // RN TODO: this should have projectName paramter
+    loadTaskCreation(projectName);
     addAddTaskBtnListener(projectName);
     addCancelTaskCreationListener();
   });
 }
-
-import { isToday, parseISO } from "date-fns";
 
 function addAddTaskBtnListener(projectName) {
   const button = document.querySelector("#submit-task-creation-button");
@@ -51,30 +43,18 @@ function addAddTaskBtnListener(projectName) {
       document.getElementById("description-input").value;
     const dueDateInputValue = document.getElementById("due-date").value;
 
-    if (isToday(parseISO(dueDateInputValue))) {
-      console.log("it's today");
-    } else {
-      console.log("not today");
+    if (projectName === "Today" || projectName === "Inbox") {
+      projectName = null;
     }
 
-    let task =
-      projectName === "Today" || projectName === "Inbox"
-        ? new Task(
-            titleInputValue,
-            descriptionInputValue,
-            dueDateInputValue,
-            null
-          )
-        : new Task(
-            titleInputValue,
-            descriptionInputValue,
-            dueDateInputValue,
-            projectName
-          );
+    let task = new Task(
+      titleInputValue,
+      descriptionInputValue,
+      dueDateInputValue,
+      projectName
+    );
 
     addTask(task);
-    // TODO: if task is defined in today, its due date should automatically be today, so add default value for that
-
     loadTaskElement(task, getTaskId(task));
     removeTaskCreation();
   });
@@ -107,8 +87,6 @@ function addSaveTaskBtnListener(index) {
     taskItem.remove();
   });
 
-  // BUG: edited task, doesnt save the task due date
-
   addInputListener(
     document.getElementById("title-input"),
     document.querySelector("#save-task-creation-button")
@@ -119,7 +97,6 @@ function addRemoveTaskBtnListener(index) {
   const button = document.querySelector("#remove-task-button");
 
   addClickListener(button, () => {
-    console.log("removed task with index" + index);
     removeTaskAtIndex(index);
     loadContentSection(getActiveMenuItem());
   });

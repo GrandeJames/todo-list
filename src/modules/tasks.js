@@ -26,11 +26,8 @@ export function loadTasks(name) {
   addEmptyTasksList();
   addTasksToTasksList(name);
 
-  console.log(tasks);
+  console.log(tasks); // TODO: remove later
 }
-
-// Adding is fine
-// BUG REMOVED WRONG TASK WITH WRONG INDEX (1 instead of 3)
 
 function addEmptyTasksList() {
   document.querySelector("#tasks-list").remove();
@@ -70,6 +67,3 @@ function getProjectTasks(projectName) {
 function appendTasks(tasksToAdd) {
   tasksToAdd.forEach(task => loadTaskElement(task, tasks.indexOf(task)));
 }
-
-//index is wrong
-//the index is the new array not the original array (tasksToAdd)
