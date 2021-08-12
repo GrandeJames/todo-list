@@ -34,7 +34,7 @@ export function addNewTaskBtnListener(projectName) {
   const button = document.querySelector("#new-task-button");
 
   addClickListener(button, () => {
-    loadTaskCreation();
+    loadTaskCreation(projectName); // RN TODO: this should have projectName paramter
     addAddTaskBtnListener(projectName);
     addCancelTaskCreationListener();
   });

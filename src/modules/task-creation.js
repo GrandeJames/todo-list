@@ -1,18 +1,28 @@
 import { toggleElement } from "../components/toggleElement";
+import { getTodaysDate } from "../components/date";
 
-export function loadTaskCreation() {
-  addCreateTask();
+export function loadTaskCreation(sectionName) {
+  addCreateTask(sectionName);
   toggleCreateTaskBtn();
   addTaskCreationButtons(document.querySelector("#task-creation-container"));
 }
 
-function addCreateTask() {
+function addCreateTask(sectionName) {
   document.querySelector(".content-section").appendChild(getTaskCreation());
+
+  if (sectionName === "Today") {
+    addDefaultDateToTaskCreation();
+  }
+}
+
+function addDefaultDateToTaskCreation() {
+  const dueDate = document.querySelector("#due-date");
+
+  dueDate.value = getTodaysDate();
 }
 
 export function addEditTask(element, task) {
   const taskCreation = getTaskCreation();
-
   element.parentElement.insertBefore(taskCreation, element.nextSibling);
 
   appendRemoveButton();
