@@ -89,12 +89,16 @@ function addSaveTaskBtnListener(index) {
   const button = document.querySelector("#save-task-creation-button");
 
   addClickListener(button, () => {
-    const titleInput = document.getElementById("title-input");
-    const descriptionInput = document.getElementById("description-input");
+    const titleInputValue = document.getElementById("title-input").value;
+    const descriptionInputValue =
+      document.getElementById("description-input").value;
+    const dueDateValue = document.getElementById("due-date").value;
 
     let task = getTaskAtIndex(index);
-    task.title = titleInput.value;
-    task.description = descriptionInput.value;
+
+    task.title = titleInputValue;
+    task.description = descriptionInputValue;
+    task.dueDate = dueDateValue;
 
     const taskItem = document.querySelector(`[data-index="${index}"]`);
 
@@ -102,6 +106,8 @@ function addSaveTaskBtnListener(index) {
     removeTaskCreation();
     taskItem.remove();
   });
+
+  // BUG: edited task, doesnt save the task due date
 
   addInputListener(
     document.getElementById("title-input"),
