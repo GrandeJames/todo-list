@@ -96,11 +96,11 @@ function addSaveTaskBtnListener(index) {
     task.title = titleInput.value;
     task.description = descriptionInput.value;
 
-    loadEditedTaskElement(task, index, document.getElementById(index));
+    const taskItem = document.querySelector(`[data-index="${index}"]`);
 
+    loadEditedTaskElement(task, index, taskItem);
     removeTaskCreation();
-
-    document.getElementById(index).remove();
+    taskItem.remove();
   });
 
   addInputListener(
