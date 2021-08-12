@@ -33,6 +33,10 @@ function getProjectCreationForm() {
   input2.id = "add-project-creation-button";
   input3.id = "cancel-project-creation-button";
 
+  input2.className = "submit-button";
+
+  input3.className = "cancel-button";
+
   input2.type = "button";
   input3.type = "button";
 

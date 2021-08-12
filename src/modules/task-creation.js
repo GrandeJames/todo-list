@@ -51,6 +51,7 @@ function addSaveTaskButton(parentElement) {
   const input = document.createElement("input");
 
   input.id = "save-task-creation-button";
+  input.className = "submit-button";
   input.type = "button";
   input.value = "Save task";
 
@@ -84,6 +85,7 @@ function addSubmitTaskButton(parentElement) {
   const input = document.createElement("input");
 
   input.id = "submit-task-creation-button";
+  input.className = "submit-button";
   input.type = "button";
   input.value = "Add task";
   input.disabled = true;
@@ -95,6 +97,7 @@ function addCancelButton(parentElement) {
   const input = document.createElement("input");
 
   input.id = "cancel-task-creation-button";
+  input.className = "cancel-button";
   input.type = "button";
   input.value = "Cancel";
 

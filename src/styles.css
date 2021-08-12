@@ -31,7 +31,7 @@ main {
 
 #menu-container {
   padding: 2rem 0.5rem 0 2rem;
-  width: 20rem;
+  width: 25rem;
   background-color: var(--color-gray);
 }
 
@@ -123,16 +123,14 @@ li {
   display: flex;
 }
 
-#submit-task-creation-button,
-#save-task-creation-button,
-#cancel-task-creation-button {
+.submit-button,
+.cancel-button {
   border-radius: var(--radius);
   height: 2rem;
   cursor: pointer;
 }
 
-#submit-task-creation-button,
-#save-task-creation-button {
+.submit-button {
   background-color: var(--color-green);
   border: none;
   width: 7rem;
@@ -140,14 +138,13 @@ li {
   color: rgba(0, 0, 0, 0.75);
 }
 
-#submit-task-creation-button:disabled,
-#save-task-creation-button:disabled {
+.submit-button:disabled {
   background-color: rgb(78, 155, 71, 0.3);
   color: var(--color-dark-gray);
   cursor: not-allowed;
 }
 
-#cancel-task-creation-button {
+.cancel-button {
   background-color: white;
   border: 1px solid var(--color-dark-gray);
   width: 4rem;
@@ -207,6 +204,17 @@ li {
   height: 1.5rem;
   width: 4rem;
   font-size: 0.8rem;
+}
+
+#project-creation-container {
+  margin: 5px 0;
+}
+
+#project-name-input {
+  padding: 7px;
+  width: 100%;
+  border-radius: var(--radius);
+  height: 1.5rem;
 }
 
 .hidden {
