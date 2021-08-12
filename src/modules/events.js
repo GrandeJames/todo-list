@@ -40,17 +40,37 @@ export function addNewTaskBtnListener(projectName) {
   });
 }
 
+import { isToday, parseISO } from "date-fns";
+
 function addAddTaskBtnListener(projectName) {
   const button = document.querySelector("#submit-task-creation-button");
 
   addClickListener(button, () => {
-    const titleInput = document.getElementById("title-input");
-    const descriptionInput = document.getElementById("description-input");
+    const titleInputValue = document.getElementById("title-input").value;
+    const descriptionInputValue =
+      document.getElementById("description-input").value;
+    const dueDateInputValue = document.getElementById("due-date").value;
+
+    if (isToday(parseISO(dueDateInputValue))) {
+      console.log("it's today");
+    } else {
+      console.log("not today");
+    }
 
     let task =
       projectName === "Today" || projectName === "Inbox"
-        ? new Task(titleInput.value, descriptionInput.value)
-        : new Task(titleInput.value, descriptionInput.value, projectName);
+        ? new Task(
+            titleInputValue,
+            descriptionInputValue,
+            dueDateInputValue,
+            null
+          )
+        : new Task(
+            titleInputValue,
+            descriptionInputValue,
+            dueDateInputValue,
+            projectName
+          );
 
     addTask(task);
     // TODO: if task is defined in today, its due date should automatically be today, so add default value for that

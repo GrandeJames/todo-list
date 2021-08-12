@@ -2,13 +2,15 @@ import { addEditTaskListener } from "./events";
 export class Task {
   title;
   description;
+  dueDate;
+  project;
 
-  constructor(title, description, project) {
+  constructor(title, description, dueDate, project) {
     this.title = title;
     this.description = description;
-    this.project = project;
-    //this.dueDate = dueDate;
+    this.dueDate = dueDate;
     //this.priority = priority;
+    this.project = project;
   }
 
   get title() {
@@ -17,6 +19,10 @@ export class Task {
 
   get description() {
     return this.description;
+  }
+
+  get dueDate() {
+    return this.dueDate;
   }
 }
 

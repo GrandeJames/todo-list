@@ -46,7 +46,7 @@ function addTasksToTasksList(menuItemName) {
   if (menuItemName === "Inbox") {
     tasksToAdd = getInboxTasks();
   } else if (menuItemName === "Today") {
-    // TODO
+    tasksToAdd = getTodayTasks();
   } else {
     tasksToAdd = getProjectTasks(menuItemName);
   }
@@ -54,7 +54,13 @@ function addTasksToTasksList(menuItemName) {
 }
 
 function getInboxTasks() {
-  return tasks.filter(task => task.project === undefined);
+  return tasks.filter(task => task.project === null);
+}
+
+import { isToday, parseISO } from "date-fns";
+
+function getTodayTasks() {
+  return tasks.filter(task => isToday(parseISO(task.dueDate)));
 }
 
 function getProjectTasks(projectName) {
