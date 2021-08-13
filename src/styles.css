@@ -110,7 +110,8 @@ li {
   transform: scale(1.01);
 }
 
-.task-description {
+.task-description,
+.task-due-date {
   color: rgb(100, 100, 100);
   font-size: 0.8rem;
 }

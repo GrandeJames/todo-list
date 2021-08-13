@@ -1,5 +1,5 @@
 import { toggleElement } from "../components/toggleElement";
-import { getTodaysDate } from "../components/date";
+import { format } from "date-fns";
 
 export function loadTaskCreation(sectionName) {
   addCreateTask(sectionName);
@@ -18,7 +18,8 @@ function addCreateTask(sectionName) {
 function addDefaultDateToTaskCreation() {
   const dueDate = document.querySelector("#due-date");
 
-  dueDate.value = getTodaysDate();
+  const today = format(new Date(), "yyyy-MM-dd");
+  dueDate.value = today;
 }
 
 export function addEditTask(element, task) {

@@ -45,12 +45,15 @@ export function loadEditedTaskElement(task, index, element) {
   addEditTaskListener(taskItem);
 }
 
+import { getFormattedDate } from "../components/date";
+
 export function getTaskItem(task, index) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
   const p1 = document.createElement("p");
   const p2 = document.createElement("p");
+  const p3 = document.createElement("p");
 
   taskItem.setAttribute("data-index", index);
 
@@ -59,13 +62,16 @@ export function getTaskItem(task, index) {
   div2.className = "task-info";
   p1.className = "task-title";
   p2.className = "task-description";
+  p3.className = "task-due-date";
 
   p1.textContent = task.title;
   p2.textContent = task.description;
-  // TODO: this should have due date and priority?
+
+  p3.textContent = getFormattedDate(task.dueDate);
 
   div2.appendChild(p1);
   div2.appendChild(p2);
+  div2.appendChild(p3);
 
   div1.appendChild(div2);
 

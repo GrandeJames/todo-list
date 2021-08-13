@@ -1,17 +1,25 @@
-export function getTodaysDate() {
-  var today = new Date();
+import { format, isThisYear, isToday, isTomorrow, isYesterday } from "date-fns";
 
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1;
-  var yyyy = today.getFullYear();
-
-  if (dd < 10) {
-    dd = "0" + dd;
+export function getFormattedDate(date) {
+  if (date) {
+    if (isThisYear(getDateObj(date))) {
+      if (isYesterday(getDateObj(date))) {
+        return "Yesterday";
+      } else if (isToday(getDateObj(date))) {
+        return "Today";
+      } else if (isTomorrow(getDateObj(date))) {
+        return "Tomorrow";
+      }
+      return format(getDateObj(date), "LLLL dd");
+    }
+    return format(getDateObj(date), "LLLL dd, yyyy");
   }
+}
 
-  if (mm < 10) {
-    mm = "0" + mm;
-  }
+function getDateObj(date) {
+  const year = date.substring(0, 4);
+  const month = date.substring(5, 7) - 1;
+  const day = date.substring(8, 10);
 
-  return yyyy + "-" + mm + "-" + dd;
+  return new Date(year, month, day);
 }
