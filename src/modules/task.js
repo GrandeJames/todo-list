@@ -1,4 +1,6 @@
 import { addEditTaskListener } from "./events";
+import { getFormattedDate } from "../components/date";
+
 export class Task {
   title;
   description;
@@ -45,8 +47,6 @@ export function loadEditedTaskElement(task, index, element) {
   addEditTaskListener(taskItem);
 }
 
-import { getFormattedDate } from "../components/date";
-
 export function getTaskItem(task, index) {
   const taskItem = document.createElement("li");
   const div1 = document.createElement("div");
@@ -73,9 +73,19 @@ export function getTaskItem(task, index) {
   div2.appendChild(p2);
   div2.appendChild(p3);
 
+  div1.appendChild(getCheckbox());
+
   div1.appendChild(div2);
 
   taskItem.appendChild(div1);
 
   return taskItem;
+}
+
+function getCheckbox() {
+  const div = document.createElement("div");
+
+  div.className = "checkbox";
+
+  return div;
 }

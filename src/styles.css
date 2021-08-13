@@ -56,6 +56,7 @@ main {
 .task {
   padding: 7px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.103);
+  display: flex;
 }
 
 /* Aesthetics */
@@ -105,15 +106,25 @@ li {
 }
 
 .task-item:hover {
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  transform: scale(1.01);
 }
 
 .task-description,
 .task-due-date {
   color: rgb(100, 100, 100);
   font-size: 0.8rem;
+}
+
+.checkbox {
+  height: 1.3rem;
+  width: 1.3rem;
+  border: 1px solid var(--color-dark-gray);
+  border-radius: 50%;
+  margin: 3px 10px 0 0;
+}
+
+.checked {
+  background-color: green;
 }
 
 #task-creation-container {

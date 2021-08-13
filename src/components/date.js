@@ -1,22 +1,21 @@
 import { format, isThisYear, isToday, isTomorrow, isYesterday } from "date-fns";
 
-export function getFormattedDate(date) {
-  if (date) {
-    if (isThisYear(getDateObj(date))) {
-      if (isYesterday(getDateObj(date))) {
-        return "Yesterday";
-      } else if (isToday(getDateObj(date))) {
-        return "Today";
-      } else if (isTomorrow(getDateObj(date))) {
-        return "Tomorrow";
-      }
-      return format(getDateObj(date), "LLLL dd");
+export function getFormattedDate(dateString) {
+  if (dateString) {
+    if (!isThisYear(getDate(dateString))) {
+      return format(getDate(dateString), "LLLL dd, yyyy");
+    } else if (isYesterday(getDate(dateString))) {
+      return "Yesterday";
+    } else if (isToday(getDate(dateString))) {
+      return "Today";
+    } else if (isTomorrow(getDate(dateString))) {
+      return "Tomorrow";
     }
-    return format(getDateObj(date), "LLLL dd, yyyy");
+    return format(getDate(dateString), "LLLL dd");
   }
 }
 
-function getDateObj(date) {
+function getDate(date) {
   const year = date.substring(0, 4);
   const month = date.substring(5, 7) - 1;
   const day = date.substring(8, 10);

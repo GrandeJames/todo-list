@@ -167,6 +167,25 @@ export function loadProjectListener(project) {
   });
 }
 
+// add this listener when a tasks are loaded
+// when it gets clicked add clicked to class list
+// when it gets clicked cross out the task item
+export function addCheckboxListener() {
+  const checkboxes = document.querySelectorAll(".checkbox");
+
+  checkboxes.forEach(checkbox => {
+    console.log("a");
+    checkbox.addEventListener("click", event => {
+      event.preventDefault();
+      if (checkbox.classList.contains("checked")) {
+        checkbox.classList.remove("checked");
+      } else {
+        checkbox.classList.add("checked");
+      }
+    });
+  });
+}
+
 function addClickListener(element, callbackFn) {
   element.addEventListener("click", callbackFn);
 }
